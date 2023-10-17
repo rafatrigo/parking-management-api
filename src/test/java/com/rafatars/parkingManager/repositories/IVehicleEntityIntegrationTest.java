@@ -44,6 +44,17 @@ public class IVehicleEntityIntegrationTest {
 	}
 	
 	@Test
+	public void testThatVehicleCanBeCreatedWithoutCompany() {
+		VehicleEntity vehicleEntity = TestDataUtil.createTestVehicleEntityWithoutCompany();
+		
+		underTest.save(vehicleEntity);
+		
+		Optional<VehicleEntity> result = underTest.findById(vehicleEntity.getId());
+		assertThat(result).isPresent();
+		assertThat(result.get()).isEqualTo(vehicleEntity);
+	}
+	
+	@Test
 	public void testThatMultiplesVehiclesCanBeCreatedAndRecalled() {
 		
 		VehicleEntity vehicle1 = TestDataUtil.createTestVehicleEntityA();
