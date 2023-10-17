@@ -38,7 +38,7 @@ Personal project to study Spring Boot
 - [ ] Create the controllers
 	- [x] Create the company controller
 	- [ ] Create the test for the company controller
-	- [ ] Create the vehicles controller
+	- [X] Create the vehicles controller
 	- [ ] Create the test for the vehicles controller
 
 ---
