@@ -57,7 +57,7 @@ public class CompanyController {
 		if(foundCompany.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
-			return new ResponseEntity(foundCompany.get(), HttpStatus.OK); 
+			return new ResponseEntity<>(foundCompany.get(), HttpStatus.OK); 
 		}
 	
 	}
@@ -112,9 +112,15 @@ public class CompanyController {
 	@DeleteMapping(path = "/companies/{id}")
 	public ResponseEntity delteCompany(@PathVariable("id") Long id) {
 		
-		companyService.deleteById(id);
+		final Optional<Company> company = companyService.findById(id);
 		
-		return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		if(company.isEmpty()) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			companyService.deleteById(id);
+			
+			return new ResponseEntity<>(HttpStatus.NO_CONTENT);
+		}
 	}
 	
 }
