@@ -35,11 +35,11 @@ Personal project to study Spring Boot
 		- [x] Create the test for the update service
 		- [x] Create the test for the delete by id service
 		- [x] Create the test for the find by id service
-- [ ] Create the controllers
+- [X] Create the controllers
 	- [x] Create the company controller
 	- [X] Create the test for the company controller
 	- [X] Create the vehicles controller
-	- [ ] Create the test for the vehicles controller
+	- [X] Create the test for the vehicles controller
 
 ---
 ### Second phase
