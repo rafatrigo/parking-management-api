@@ -1,16 +1,74 @@
 package com.rafatars.parkingManager;
 
 import com.rafatars.parkingManager.entities.CompanyEntity;
+import com.rafatars.parkingManager.entities.ParkingLotEntity;
 import com.rafatars.parkingManager.entities.VehicleEntity;
 import com.rafatars.parkingManager.entities.VehicleType;
 import com.rafatars.parkingManager.entities.mirrors.Company;
 import com.rafatars.parkingManager.entities.mirrors.Vehicle;
+import com.rafatars.parkingManager.entities.VehicleOwnerEntity;
 
 
 public final class TestDataUtil {
 	
 	private TestDataUtil() {
 		
+	}
+
+	public static ParkingLotEntity createTestParkingLotEntityA() {
+		
+		return ParkingLotEntity.builder()
+				.id(1L)
+				.name("PLA")
+				.address("Street 01")
+				.phone("1231231777")
+				.carSpaces(20)
+				.motorcycleSpaces(10)
+				.company(TestDataUtil.createTestCompanyEntityA())
+				.build();
+	}
+
+	public static ParkingLotEntity createTestParkingLotEntityB() {
+		
+		return ParkingLotEntity.builder()
+				.id(2L)
+				.name("PLB")
+				.address("Street 02")
+				.phone("1231231888")
+				.carSpaces(30)
+				.motorcycleSpaces(45)
+				.company(TestDataUtil.createTestCompanyEntityB())
+				.build();
+	}
+
+	public static VehicleOwnerEntity createTestVehicleOwnerEntityA() {
+		
+		return VehicleOwnerEntity.builder()
+				.id(1L)
+				.name("OwnerA")
+				.phone("1231231888")
+				.email("ownerA@gmail.com")
+				.build();
+	}
+
+	public static VehicleOwnerEntity createTestVehicleOwnerEntityB() {
+		
+		return VehicleOwnerEntity.builder()
+				.id(2L)
+				.name("OwnerB")
+				.phone("1231231999")
+				.email("ownerB@gmail.com")
+				.build();
+	}
+
+	public static VehicleOwnerEntity createTestVehicleOwnerEntityC() {
+		
+		return VehicleOwnerEntity.builder()
+				.id(3L)
+				.name("OwnerC")
+				.phone("1231231000")
+				.email("ownerC@gmail.com")
+				.build();
 	}
 
 	public static CompanyEntity createTestCompanyEntityA() {
@@ -88,7 +146,7 @@ public final class TestDataUtil {
 				.color("Black")
 				.plate("001")
 				.type(VehicleType.CAR)
-				.company(TestDataUtil.createTestCompanyEntityA())
+				.vehicleOwner(TestDataUtil.createTestVehicleOwnerEntityA())
 				.build();
 	}
 	
@@ -100,7 +158,7 @@ public final class TestDataUtil {
 				.color("Orange")
 				.plate("002")
 				.type(VehicleType.CAR)
-				.company(TestDataUtil.createTestCompanyEntityB())
+				.vehicleOwner(TestDataUtil.createTestVehicleOwnerEntityB())
 				.build();
 	}
 	
@@ -112,7 +170,7 @@ public final class TestDataUtil {
 				.color("white")
 				.plate("003")
 				.type(VehicleType.MOTORCYCLE)
-				.company(TestDataUtil.createTestCompanyEntityC())
+				.vehicleOwner(TestDataUtil.createTestVehicleOwnerEntityC())
 				.build();
 	}
 	
