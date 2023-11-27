@@ -7,6 +7,7 @@ import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
 import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
@@ -33,6 +34,7 @@ public class CompanyEntity {
 	@OneToMany(mappedBy = "company")
 	private Set<ParkingLotEntity> parkingLots;
 
-	// TODO add the relationship with the User when it is created.
+	@ManyToMany(mappedBy = "companies")
+	private Set<UserEntity> users;
 	
 }

@@ -3,6 +3,7 @@ package com.rafatars.parkingManager.entities.mirrors;
 import java.util.Set;
 
 import com.rafatars.parkingManager.entities.ParkingLotEntity;
+import com.rafatars.parkingManager.entities.UserEntity;
 
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -25,4 +26,5 @@ public class Company {
 	private String phone;
 
 	private Set<ParkingLotEntity> parkingLots;
+	private Set<UserEntity> users;
 }
