@@ -6,11 +6,16 @@ Personal project to study Spring Boot
 ---
 ### Restructure project
 
-##### Entities
+##### Create Repositories
 
 - [ ] User
-- [X] Company
-- [X] ParkingLot
-- [X] Store
-- [X] Vehicle
-- [X] VehicleOwner
+- [ ] ParkingLot
+- [ ] Store
+- [ ] VehicleOwner
+
+##### Create tests
+
+- [ ] User repository
+- [ ] ParkingLot repository
+- [ ] Store repository
+- [ ] VehicleOwner repository
