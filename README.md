@@ -13,4 +13,4 @@ Personal project to study Spring Boot
 - [X] ParkingLot
 - [X] Store
 - [X] Vehicle
-- [ ] VehicleOwner
+- [X] VehicleOwner
