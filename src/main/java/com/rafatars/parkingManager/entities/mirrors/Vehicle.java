@@ -1,6 +1,6 @@
 package com.rafatars.parkingManager.entities.mirrors;
 
-import com.rafatars.parkingManager.entities.CompanyEntity;
+import com.rafatars.parkingManager.entities.VehicleOwnerEntity;
 import com.rafatars.parkingManager.entities.VehicleType;
 
 import lombok.AllArgsConstructor;
@@ -23,5 +23,5 @@ public class Vehicle {
 	private String color;
 	private String plate;
 	private VehicleType type;
-	private CompanyEntity company;
+	private VehicleOwnerEntity vehicleOwner;
 }
