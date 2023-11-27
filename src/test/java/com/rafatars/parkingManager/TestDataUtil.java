@@ -1,10 +1,10 @@
 package com.rafatars.parkingManager;
 
-import com.rafatars.parkingManager.entities.Company;
 import com.rafatars.parkingManager.entities.CompanyEntity;
-import com.rafatars.parkingManager.entities.Vehicle;
 import com.rafatars.parkingManager.entities.VehicleEntity;
 import com.rafatars.parkingManager.entities.VehicleType;
+import com.rafatars.parkingManager.entities.mirrors.Company;
+import com.rafatars.parkingManager.entities.mirrors.Vehicle;
 
 
 public final class TestDataUtil {
@@ -21,8 +21,6 @@ public final class TestDataUtil {
 				.cnpj("001")
 				.address("Street 01")
 				.phone("1231231777")
-				.motorcycleParkingSpaces(20)
-				.carParkingSpaces(15)
 				.build();
 	}
 	
@@ -34,8 +32,6 @@ public final class TestDataUtil {
 				.cnpj("002")
 				.address("Street 02")
 				.phone("1231231888")
-				.motorcycleParkingSpaces(50)
-				.carParkingSpaces(30)
 				.build();
 	}
 
@@ -47,8 +43,6 @@ public final class TestDataUtil {
 			.cnpj("003")
 			.address("Street 03")
 			.phone("1231231999")
-			.motorcycleParkingSpaces(70)
-			.carParkingSpaces(50)
 			.build();
 	}
 	
@@ -60,8 +54,6 @@ public final class TestDataUtil {
 				.cnpj("001")
 				.address("Street 01")
 				.phone("1231231777")
-				.motorcycleParkingSpaces(20)
-				.carParkingSpaces(15)
 				.build();
 	}
 	
@@ -73,8 +65,6 @@ public final class TestDataUtil {
 				.cnpj("002")
 				.address("Street 02")
 				.phone("1231231888")
-				.motorcycleParkingSpaces(60)
-				.carParkingSpaces(45)
 				.build();
 	}
 	
@@ -86,8 +76,6 @@ public final class TestDataUtil {
 			.cnpj("003")
 			.address("Street 03")
 			.phone("1231231999")
-			.motorcycleParkingSpaces(70)
-			.carParkingSpaces(50)
 			.build();
 	}
 	

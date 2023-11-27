@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rafatars.parkingManager.entities.Company;
+import com.rafatars.parkingManager.entities.mirrors.Company;
 import com.rafatars.parkingManager.services.ICompanyService;
 
 @RestController

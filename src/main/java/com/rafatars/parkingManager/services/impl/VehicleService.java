@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.rafatars.parkingManager.entities.Vehicle;
 import com.rafatars.parkingManager.entities.VehicleEntity;
+import com.rafatars.parkingManager.entities.mirrors.Vehicle;
 import com.rafatars.parkingManager.respositories.IVehicleRepository;
 import com.rafatars.parkingManager.services.IVehicleService;
 

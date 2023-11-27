@@ -15,7 +15,7 @@ import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
 import com.rafatars.parkingManager.TestDataUtil;
-import com.rafatars.parkingManager.entities.Vehicle;
+import com.rafatars.parkingManager.entities.mirrors.Vehicle;
 import com.rafatars.parkingManager.services.impl.VehicleService;
 
 @SpringBootTest

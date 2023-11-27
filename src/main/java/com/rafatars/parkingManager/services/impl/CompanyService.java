@@ -9,8 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.rafatars.parkingManager.entities.Company;
 import com.rafatars.parkingManager.entities.CompanyEntity;
+import com.rafatars.parkingManager.entities.mirrors.Company;
 import com.rafatars.parkingManager.respositories.ICompanyRepository;
 import com.rafatars.parkingManager.services.ICompanyService;
 
@@ -45,8 +45,6 @@ public class CompanyService implements ICompanyService {
 		updatingCompany.setCnpj(obj.getCnpj());
 		updatingCompany.setAddress(obj.getAddress());
 		updatingCompany.setPhone(obj.getPhone());
-		updatingCompany.setMotorcycleParkingSpaces(obj.getMotorcycleParkingSpaces());
-		updatingCompany.setCarParkingSpaces(obj.getCarParkingSpaces());
 		
 		CompanyEntity updatedCompany = companyRepository.save(updatingCompany);
 		
@@ -96,8 +94,6 @@ public class CompanyService implements ICompanyService {
 				.cnpj(comp.getCnpj())
 				.address(comp.getAddress())
 				.phone(comp.getPhone())
-				.motorcycleParkingSpaces(comp.getMotorcycleParkingSpaces())
-				.carParkingSpaces(comp.getCarParkingSpaces())
 				.build();
 	}
 	
@@ -108,8 +104,6 @@ public class CompanyService implements ICompanyService {
 				.cnpj(comp.getCnpj())
 				.address(comp.getAddress())
 				.phone(comp.getPhone())
-				.motorcycleParkingSpaces(comp.getMotorcycleParkingSpaces())
-				.carParkingSpaces(comp.getCarParkingSpaces())
 				.build();
 	}
 
