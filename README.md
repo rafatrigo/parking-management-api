@@ -9,8 +9,8 @@ Personal project to study Spring Boot
 ##### Entities
 
 - [ ] User
-- [ ] Company
-- [ ] ParkingLot
-- [ ] Store
-- [ ] Vehicle
+- [X] Company
+- [X] ParkingLot
+- [X] Store
+- [X] Vehicle
 - [ ] VehicleOwner
