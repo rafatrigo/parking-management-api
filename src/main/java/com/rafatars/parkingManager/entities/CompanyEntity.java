@@ -1,6 +1,8 @@
 package com.rafatars.parkingManager.entities;
 
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -29,7 +31,7 @@ public class CompanyEntity {
 	private String phone;
 
 	@OneToMany(mappedBy = "company")
-	private ParkingLotEntity parkingLot;
+	private Set<ParkingLotEntity> parkingLots;
 
 	// TODO add the relationship with the User when it is created.
 	
