@@ -1,10 +1,14 @@
 package com.rafatars.parkingManager.entities;
 
 
+import java.util.Set;
+
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
 import jakarta.persistence.Id;
+import jakarta.persistence.ManyToMany;
+import jakarta.persistence.OneToMany;
 import jakarta.persistence.Table;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
@@ -26,7 +30,11 @@ public class CompanyEntity {
 	private String cnpj;
 	private String address;
 	private String phone;
-	private int motorcycleParkingSpaces;
-	private int carParkingSpaces;
+
+	@OneToMany(mappedBy = "company")
+	private Set<ParkingLotEntity> parkingLots;
+
+	@ManyToMany(mappedBy = "companies")
+	private Set<UserEntity> users;
 	
 }

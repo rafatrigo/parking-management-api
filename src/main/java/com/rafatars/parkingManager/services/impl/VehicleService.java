@@ -9,10 +9,8 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
-import com.rafatars.parkingManager.entities.Vehicle;
 import com.rafatars.parkingManager.entities.VehicleEntity;
-import com.rafatars.parkingManager.entities.Vehicle;
-import com.rafatars.parkingManager.entities.VehicleEntity;
+import com.rafatars.parkingManager.entities.mirrors.Vehicle;
 import com.rafatars.parkingManager.respositories.IVehicleRepository;
 import com.rafatars.parkingManager.services.IVehicleService;
 
@@ -48,7 +46,7 @@ public class VehicleService implements IVehicleService {
 		vehicle.setModel(obj.getModel());
 		vehicle.setPlate(obj.getPlate());
 		vehicle.setType(obj.getType());
-		vehicle.setCompany(obj.getCompany());
+		vehicle.setVehicleOwner(obj.getVehicleOwner());
 		
 		final VehicleEntity savedVehicle = vehicleRepository.save(vehicle);
 		
@@ -97,7 +95,7 @@ public class VehicleService implements IVehicleService {
 				.model(vehicle.getModel())
 				.plate(vehicle.getPlate())
 				.type(vehicle.getType())
-				.company(vehicle.getCompany())
+				.vehicleOwner(vehicle.getVehicleOwner())
 				.build();
 		
 		
@@ -111,7 +109,7 @@ public class VehicleService implements IVehicleService {
 				.model(vehicle.getModel())
 				.plate(vehicle.getPlate())
 				.type(vehicle.getType())
-				.company(vehicle.getCompany())
+				.vehicleOwner(vehicle.getVehicleOwner())
 				.build();
 	}
 	

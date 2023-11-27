@@ -15,8 +15,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.rafatars.parkingManager.TestDataUtil;
-import com.rafatars.parkingManager.entities.Vehicle;
 import com.rafatars.parkingManager.entities.VehicleEntity;
+import com.rafatars.parkingManager.entities.mirrors.Vehicle;
 import com.rafatars.parkingManager.respositories.IVehicleRepository;
 import com.rafatars.parkingManager.services.impl.VehicleService;
 

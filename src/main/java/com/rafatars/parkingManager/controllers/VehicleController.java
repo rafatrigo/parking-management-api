@@ -14,7 +14,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rafatars.parkingManager.entities.Vehicle;
+import com.rafatars.parkingManager.entities.mirrors.Vehicle;
 import com.rafatars.parkingManager.services.IVehicleService;
 
 @RestController
@@ -76,7 +76,7 @@ public class VehicleController {
 	}
 	
 	@DeleteMapping(path = "/vehicles/{id}")
-	public ResponseEntity deleteVehicle(@PathVariable("id") Long id) {
+	public <T> ResponseEntity<T> deleteVehicle(@PathVariable("id") Long id) {
 		
 		final Optional<Vehicle> vehicle = vehicleService.findById(id);
 		
