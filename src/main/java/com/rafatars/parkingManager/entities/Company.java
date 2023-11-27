@@ -19,6 +19,4 @@ public class Company {
 	private String cnpj;
 	private String address;
 	private String phone;
-	private int motorcycleParkingSpaces;
-	private int carParkingSpaces;
 }

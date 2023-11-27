@@ -26,7 +26,7 @@ public class CompanyEntity {
 	private String cnpj;
 	private String address;
 	private String phone;
-	private int motorcycleParkingSpaces;
-	private int carParkingSpaces;
+
+	// TODO add the relationship with the store entity when the store entity is created.
 	
 }

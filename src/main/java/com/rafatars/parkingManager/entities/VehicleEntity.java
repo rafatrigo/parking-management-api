@@ -29,7 +29,10 @@ public class VehicleEntity {
 	private String color;
 	private String plate;
 	private VehicleType type;
+	// TODO add vehicle owner when the vehicle owner is created
 	
+
+	// TODO change the relationship when the store entity is created
 	@ManyToOne(cascade = CascadeType.ALL)
 	@JoinColumn(name = "company_id", unique= true,
 		insertable=true, updatable=true, referencedColumnName = "id")
