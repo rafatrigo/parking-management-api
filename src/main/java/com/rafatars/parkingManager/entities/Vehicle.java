@@ -5,6 +5,10 @@ import lombok.Builder;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+/**
+ * This class is created to represent the Vehicle entity.
+ * So the controllers can use this class instead of the VehicleEntity class.
+ */
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
