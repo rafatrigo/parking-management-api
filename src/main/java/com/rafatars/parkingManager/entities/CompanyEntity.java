@@ -30,5 +30,7 @@ public class CompanyEntity {
 
 	@OneToMany(mappedBy = "company")
 	private ParkingLotEntity parkingLot;
+
+	// TODO add the relationship with the User when it is created.
 	
 }
