@@ -8,7 +8,7 @@ Personal project to study Spring Boot
 
 ##### Create Repositories
 
-- [ ] User
+- [X] User
 - [ ] ParkingLot
 - [ ] Store
 - [ ] VehicleOwner
