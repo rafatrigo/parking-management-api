@@ -10,7 +10,7 @@ Personal project to study Spring Boot
 
 - [X] User
 - [X] ParkingLot
-- [ ] Store
+- [X] Store
 - [ ] VehicleOwner
 
 ##### Create tests
