@@ -11,7 +11,11 @@ Personal project to study Spring Boot
 - [X] User
 - [X] ParkingLot
 - [X] Store
-- [ ] VehicleOwner
+- [X] VehicleOwner
+
+##### Fix
+
+- [ ] Tests that stopped work after the restructuring the code
 
 ##### Create tests
 
