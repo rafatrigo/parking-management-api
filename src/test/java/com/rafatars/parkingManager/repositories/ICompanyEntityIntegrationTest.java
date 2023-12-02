@@ -12,9 +12,11 @@ import org.springframework.test.annotation.DirtiesContext;
 import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
-import com.rafatars.parkingManager.TestDataUtil;
+import com.rafatars.parkingManager.TestDataUtils.TestDataUtilCompany;
 import com.rafatars.parkingManager.entities.CompanyEntity;
 import com.rafatars.parkingManager.respositories.ICompanyRepository;
+
+import jakarta.transaction.Transactional;
 
 @SpringBootTest
 @ExtendWith(SpringExtension.class)
@@ -28,10 +30,12 @@ public class ICompanyEntityIntegrationTest {
 		this.underTest = underTest;
 	}
 	
+
 	@Test
+	@Transactional // to avoid LazyInitializationException
 	public void testThatCompanyCanBeCreatedAndRecalled() {
 		
-		CompanyEntity comp = TestDataUtil.createTestCompanyEntityA();
+		CompanyEntity comp = TestDataUtilCompany.createTestCompanyEntityA();
 		
 		underTest.save(comp);
 		
@@ -42,13 +46,14 @@ public class ICompanyEntityIntegrationTest {
 
 	
 	@Test
+	@Transactional // to avoid LazyInitializationException
 	public void testThatMultipleCompaniesCanBeCreatedAndRecaled() {
 		
-		CompanyEntity comp1 = TestDataUtil.createTestCompanyEntityA();
+		CompanyEntity comp1 = TestDataUtilCompany.createTestCompanyEntityA();
 		underTest.save(comp1);
-		CompanyEntity comp2 = TestDataUtil.createTestCompanyEntityB();
+		CompanyEntity comp2 = TestDataUtilCompany.createTestCompanyEntityB();
 		underTest.save(comp2);
-		CompanyEntity comp3 = TestDataUtil.createTestCompanyEntityC();
+		CompanyEntity comp3 = TestDataUtilCompany.createTestCompanyEntityC();
 		underTest.save(comp3);
 		
 		
@@ -61,9 +66,10 @@ public class ICompanyEntityIntegrationTest {
 	
 	
 	@Test
+	@Transactional // to avoid LazyInitializationException
 	public void testThatCompanyCanBeUpdated() {
 		
-		CompanyEntity comp = TestDataUtil.createTestCompanyEntityA();
+		CompanyEntity comp = TestDataUtilCompany.createTestCompanyEntityA();
 		underTest.save(comp);
 		
 		comp.setName("updated");
@@ -77,7 +83,7 @@ public class ICompanyEntityIntegrationTest {
 	
 	@Test
 	public void testThatCompanyCanBeDeleted() {
-		CompanyEntity comp = TestDataUtil.createTestCompanyEntityA();
+		CompanyEntity comp = TestDataUtilCompany.createTestCompanyEntityA();
 		underTest.save(comp);
 		
 		underTest.deleteById(comp.getId());
@@ -88,6 +94,7 @@ public class ICompanyEntityIntegrationTest {
 		assertThat(result).isEmpty();
 	}
 	
-	
+	// TODO test that company can be found by name
+	// TODO test that can add parking lot to company
 	
 }
