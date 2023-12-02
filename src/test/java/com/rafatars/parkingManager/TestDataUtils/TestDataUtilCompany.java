@@ -13,6 +13,7 @@ public class TestDataUtilCompany {
 				.cnpj("001")
 				.address("Street 01")
 				.phone("1231231777")
+				.parkingLots(null)
 				.build();
 	}
 	
@@ -24,6 +25,7 @@ public class TestDataUtilCompany {
 				.cnpj("002")
 				.address("Street 02")
 				.phone("1231231888")
+				.parkingLots(null)
 				.build();
 	}
 
@@ -35,6 +37,7 @@ public class TestDataUtilCompany {
 			.cnpj("003")
 			.address("Street 03")
 			.phone("1231231999")
+			.parkingLots(null)
 			.build();
 	}
 	
@@ -46,6 +49,7 @@ public class TestDataUtilCompany {
 				.cnpj("001")
 				.address("Street 01")
 				.phone("1231231777")
+				.parkingLots(null)
 				.build();
 	}
 	
@@ -57,6 +61,7 @@ public class TestDataUtilCompany {
 				.cnpj("002")
 				.address("Street 02")
 				.phone("1231231888")
+				.parkingLots(null)
 				.build();
 	}
 	
@@ -68,6 +73,7 @@ public class TestDataUtilCompany {
 			.cnpj("003")
 			.address("Street 03")
 			.phone("1231231999")
+			.parkingLots(null)
 			.build();
 	}
 
