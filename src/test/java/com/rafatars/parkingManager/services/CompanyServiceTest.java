@@ -15,7 +15,7 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.rafatars.parkingManager.TestDataUtil;
+import com.rafatars.parkingManager.TestDataUtils.TestDataUtilCompany;
 import com.rafatars.parkingManager.entities.CompanyEntity;
 import com.rafatars.parkingManager.entities.mirrors.Company;
 import com.rafatars.parkingManager.respositories.ICompanyRepository;
@@ -33,9 +33,9 @@ public class CompanyServiceTest {
 	@Test
 	public void testThatCompanyIsCreated() {
 		
-		final Company comp = TestDataUtil.createTestCompanyA();
+		final Company comp = TestDataUtilCompany.createTestCompanyA();
 		
-		final CompanyEntity compEntity = TestDataUtil.createTestCompanyEntityA();
+		final CompanyEntity compEntity = TestDataUtilCompany.createTestCompanyEntityA();
 		
 		when(companyRepository.save(eq(compEntity))).thenReturn(compEntity);
 		
@@ -54,9 +54,9 @@ public class CompanyServiceTest {
 	
 	@Test
 	public void testThatCompanyHasBeenUpdated() {
-		final Company oldCompany = TestDataUtil.createTestCompanyA();
+		final Company oldCompany = TestDataUtilCompany.createTestCompanyA();
 		
-		Company newCompany = TestDataUtil.createTestCompanyB();
+		Company newCompany = TestDataUtilCompany.createTestCompanyB();
 		
 		CompanyEntity saveMockReturn = underTest.companyToCompanyEntity(newCompany);
 		
@@ -78,7 +78,7 @@ public class CompanyServiceTest {
 	
 	@Test
 	public void testThatCanFindCompanyById() {
-		final Company company = TestDataUtil.createTestCompanyA();
+		final Company company = TestDataUtilCompany.createTestCompanyA();
 		
 		when(companyRepository.findById(company.getId()))
 			.thenReturn(Optional.of(underTest.companyToCompanyEntity(company)));
