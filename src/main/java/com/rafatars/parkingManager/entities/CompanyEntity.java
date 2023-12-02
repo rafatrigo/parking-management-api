@@ -3,6 +3,7 @@ package com.rafatars.parkingManager.entities;
 
 import java.util.Set;
 
+import jakarta.persistence.Column;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -35,6 +36,7 @@ public class CompanyEntity {
 	private Set<ParkingLotEntity> parkingLots;
 
 	@ManyToMany(mappedBy = "companies")
+	@Column(nullable = true)
 	private Set<UserEntity> users;
 	
 }
