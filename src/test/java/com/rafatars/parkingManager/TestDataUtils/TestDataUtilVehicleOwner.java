@@ -1,5 +1,7 @@
 package com.rafatars.parkingManager.TestDataUtils;
 
+import java.util.HashSet;
+
 import com.rafatars.parkingManager.entities.VehicleOwnerEntity;
 
 public class TestDataUtilVehicleOwner {
@@ -11,6 +13,7 @@ public class TestDataUtilVehicleOwner {
 				.name("OwnerA")
 				.phone("1231231888")
 				.email("ownerA@gmail.com")
+				.vehicles(new HashSet<>())
 				.build();
 	}
 
@@ -21,6 +24,7 @@ public class TestDataUtilVehicleOwner {
 				.name("OwnerB")
 				.phone("1231231999")
 				.email("ownerB@gmail.com")
+				.vehicles(new HashSet<>())
 				.build();
 	}
 
@@ -31,6 +35,7 @@ public class TestDataUtilVehicleOwner {
 				.name("OwnerC")
 				.phone("1231231000")
 				.email("ownerC@gmail.com")
+				.vehicles(new HashSet<>())
 				.build();
 	}
 

@@ -1,5 +1,6 @@
 package com.rafatars.parkingManager.TestDataUtils;
 
+import com.rafatars.parkingManager.entities.CompanyEntity;
 import com.rafatars.parkingManager.entities.ParkingLotEntity;
 
 public class TestDataUtilParkingLot {
@@ -27,6 +28,20 @@ public class TestDataUtilParkingLot {
 				.carSpaces(30)
 				.motorcycleSpaces(45)
 				.company(TestDataUtilCompany.createTestCompanyEntityB())
+				.build();
+	}
+
+	// Create a parking lot to use in the CompanyEntityIntegrationTest
+	public static ParkingLotEntity createTestParkingLotEntityToTestInCompany(CompanyEntity company) {
+		
+		return ParkingLotEntity.builder()
+				.id(1L)
+				.name("PLA")
+				.address("Street 01")
+				.phone("1231231777")
+				.carSpaces(20)
+				.motorcycleSpaces(10)
+				.company(company)
 				.build();
 	}
 
