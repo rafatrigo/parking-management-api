@@ -14,6 +14,8 @@ import com.rafatars.parkingManager.entities.mirrors.Vehicle;
 import com.rafatars.parkingManager.respositories.IVehicleRepository;
 import com.rafatars.parkingManager.services.IVehicleService;
 
+import com.rafatars.parkingManager.services.util.ServicesUtils;
+
 @Service
 public class VehicleService implements IVehicleService {
 
@@ -29,11 +31,11 @@ public class VehicleService implements IVehicleService {
 	@Override
 	public Vehicle create(Vehicle obj) {
 		
-		final VehicleEntity vehicleEntity = vehicleToVehicleEntity(obj);
+		final VehicleEntity vehicleEntity = ServicesUtils.vehicleToVehicleEntity(obj);
 		
 		final VehicleEntity savedVehicle = vehicleRepository.save(vehicleEntity);
 		
-		return vehicleEntityToVehicle(savedVehicle);
+		return ServicesUtils.vehicleEntityToVehicle(savedVehicle);
 	}
 
 	@Override
@@ -49,7 +51,7 @@ public class VehicleService implements IVehicleService {
 		
 		final VehicleEntity savedVehicle = vehicleRepository.save(vehicle);
 		
-		return vehicleEntityToVehicle(savedVehicle);
+		return ServicesUtils.vehicleEntityToVehicle(savedVehicle);
 	}
 
 	@Override
@@ -70,7 +72,7 @@ public class VehicleService implements IVehicleService {
 		Optional<VehicleEntity> vehicleEntity = vehicleRepository.findById(id);
 		
 		
-		return vehicleEntity.map(vehicle -> vehicleEntityToVehicle(vehicle));
+		return vehicleEntity.map(vehicle -> ServicesUtils.vehicleEntityToVehicle(vehicle));
 	}
 
 	@Override
@@ -81,34 +83,8 @@ public class VehicleService implements IVehicleService {
 		final List<VehicleEntity> vehiclesEntitiesList = StreamSupport.stream(vehicleEntities.spliterator(), false)
 				.collect(Collectors.toList());
 		
-		return vehiclesEntitiesList.stream().map(vehicle -> vehicleEntityToVehicle(vehicle))
+		return vehiclesEntitiesList.stream().map(vehicle -> ServicesUtils.vehicleEntityToVehicle(vehicle))
 				.collect(Collectors.toList());
 	}
-	
-	
-	public VehicleEntity vehicleToVehicleEntity(Vehicle vehicle) {
-		return VehicleEntity.builder()
-				.id(vehicle.getId())
-				.brand(vehicle.getBrand())
-				.color(vehicle.getColor())
-				.model(vehicle.getModel())
-				.plate(vehicle.getPlate())
-				.type(vehicle.getType())
-				.build();
-		
-		
-	}
-	
-	public Vehicle vehicleEntityToVehicle(VehicleEntity vehicle) {
-		return Vehicle.builder()
-				.id(vehicle.getId())
-				.brand(vehicle.getBrand())
-				.color(vehicle.getColor())
-				.model(vehicle.getModel())
-				.plate(vehicle.getPlate())
-				.type(vehicle.getType())
-				.build();
-	}
-	
 	
 }

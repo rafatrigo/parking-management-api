@@ -14,6 +14,8 @@ import com.rafatars.parkingManager.entities.mirrors.Company;
 import com.rafatars.parkingManager.respositories.ICompanyRepository;
 import com.rafatars.parkingManager.services.ICompanyService;
 
+import com.rafatars.parkingManager.services.util.ServicesUtils;
+
 
 @Service
 public class CompanyService implements ICompanyService {
@@ -28,11 +30,11 @@ public class CompanyService implements ICompanyService {
 	@Override
 	public Company create(final Company obj) {
 		
-		final CompanyEntity compEntity = companyToCompanyEntity(obj);
+		final CompanyEntity compEntity = ServicesUtils.companyToCompanyEntity(obj);
 		
 		final CompanyEntity savedCompEntity = companyRepository.save(compEntity);
 		
-		return companyEntityToCompany(savedCompEntity);
+		return ServicesUtils.companyEntityToCompany(savedCompEntity);
 	}
 
 	@Override
@@ -48,7 +50,7 @@ public class CompanyService implements ICompanyService {
 		
 		CompanyEntity updatedCompany = companyRepository.save(updatingCompany);
 		
-		return companyEntityToCompany(updatedCompany);
+		return ServicesUtils.companyEntityToCompany(updatedCompany);
 	}
 	
 	@Override
@@ -69,7 +71,7 @@ public class CompanyService implements ICompanyService {
 		
 		final Optional<CompanyEntity> foundCompanyEntity = companyRepository.findById(id);
 		
-		return foundCompanyEntity.map(company -> companyEntityToCompany(company));
+		return foundCompanyEntity.map(company -> ServicesUtils.companyEntityToCompany(company));
 	}
 
 	@Override
@@ -83,28 +85,8 @@ public class CompanyService implements ICompanyService {
 		
 		//convert list elements from CompanyEntity to Company and returns the list
 		return compList.stream()
-				.map(compEntity -> companyEntityToCompany(compEntity))
+				.map(compEntity -> ServicesUtils.companyEntityToCompany(compEntity))
 				.collect(Collectors.toList());
-	}
-	
-	public CompanyEntity companyToCompanyEntity(Company comp) {
-		return CompanyEntity.builder()
-				.id(comp.getId())
-				.name(comp.getName())
-				.cnpj(comp.getCnpj())
-				.address(comp.getAddress())
-				.phone(comp.getPhone())
-				.build();
-	}
-	
-	public Company companyEntityToCompany(CompanyEntity comp) {
-		return Company.builder()
-				.id(comp.getId())
-				.name(comp.getName())
-				.cnpj(comp.getCnpj())
-				.address(comp.getAddress())
-				.phone(comp.getPhone())
-				.build();
 	}
 
 }

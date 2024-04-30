@@ -21,6 +21,8 @@ import com.rafatars.parkingManager.entities.mirrors.Company;
 import com.rafatars.parkingManager.respositories.ICompanyRepository;
 import com.rafatars.parkingManager.services.impl.CompanyService;
 
+import com.rafatars.parkingManager.services.util.ServicesUtils;
+
 @ExtendWith(MockitoExtension.class)
 public class CompanyServiceTest {
 
@@ -58,13 +60,13 @@ public class CompanyServiceTest {
 		
 		Company newCompany = TestDataUtilCompany.createTestCompanyB();
 		
-		CompanyEntity saveMockReturn = underTest.companyToCompanyEntity(newCompany);
+		CompanyEntity saveMockReturn = ServicesUtils.companyToCompanyEntity(newCompany);
 		
 		saveMockReturn.setId(oldCompany.getId());
 		
 		
 		when(companyRepository.findById(oldCompany.getId()))
-			.thenReturn(Optional.of(underTest.companyToCompanyEntity(oldCompany)));
+			.thenReturn(Optional.of(ServicesUtils.companyToCompanyEntity(oldCompany)));
 		
 		when(companyRepository.save(saveMockReturn)).thenReturn(saveMockReturn);
 		
@@ -81,7 +83,7 @@ public class CompanyServiceTest {
 		final Company company = TestDataUtilCompany.createTestCompanyA();
 		
 		when(companyRepository.findById(company.getId()))
-			.thenReturn(Optional.of(underTest.companyToCompanyEntity(company)));
+			.thenReturn(Optional.of(ServicesUtils.companyToCompanyEntity(company)));
 		
 		final Optional<Company> foundCompany = underTest.findById(company.getId());
 		
