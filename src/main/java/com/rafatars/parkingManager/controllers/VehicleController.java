@@ -48,6 +48,55 @@ public class VehicleController {
 		}
 		
 	}
+
+	@GetMapping(path = "/vehicles?plate={plate}")
+	public ResponseEntity<Vehicle> getVehicleByPlate(@PathVariable("plate") String plate) {
+		
+		final Vehicle foundVehicle = vehicleService.findByPlate(plate);
+		
+		if(foundVehicle == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<>(foundVehicle, HttpStatus.OK);
+		}
+		
+	}
+
+	@GetMapping(path = "/vehicles?model={model}")
+	public List<Vehicle> getVehicleByModel(@PathVariable("model") String model) {
+		
+		final List<Vehicle> foundVehicles = vehicleService.findAllByModel(model);
+		
+		return foundVehicles;
+		
+	}
+
+	@GetMapping(path = "/vehicles?brand={brand}")
+	public List<Vehicle> getVehicleByBrand(@PathVariable("brand") String brand) {
+		
+		final List<Vehicle> foundVehicles = vehicleService.findAllByBrand(brand);
+		
+		return foundVehicles;
+		
+	}
+
+	@GetMapping(path = "/vehicles?color={color}")
+	public List<Vehicle> getVehicleByColor(@PathVariable("color") String color) {
+		
+		final List<Vehicle> foundVehicles = vehicleService.findAllByColor(color);
+		
+		return foundVehicles;
+		
+	}
+
+	@GetMapping(path = "/vehicles?type={type}")
+	public List<Vehicle> getVehicleByType(@PathVariable("type") String type) {
+		
+		final List<Vehicle> foundVehicles = vehicleService.findAllByType(type);
+		
+		return foundVehicles;
+		
+	}
 	
 	@PostMapping(path = "/vehicles")
 	public ResponseEntity<Vehicle> createVehicle(@RequestBody Vehicle vehicle) {

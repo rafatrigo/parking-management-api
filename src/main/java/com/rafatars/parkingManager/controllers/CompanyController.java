@@ -60,6 +60,51 @@ public class CompanyController {
 		}
 	
 	}
+
+	@GetMapping(path = "/companies?name={name}")
+	public ResponseEntity<Company> getCompanyByName(
+			@PathVariable("name") String name
+			){
+		
+		Company foundCompany = companyService.findByName(name);
+		
+		if(foundCompany == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<>(foundCompany, HttpStatus.OK); 
+		}
+	
+	}
+
+	@GetMapping(path = "/companies?cnpj={cnpj}")
+	public ResponseEntity<Company> getCompanyByCnpj(
+			@PathVariable("cnpj") String cnpj
+			){
+		
+		Company foundCompany = companyService.findByCnpj(cnpj);
+		
+		if(foundCompany == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<>(foundCompany, HttpStatus.OK); 
+		}
+	
+	}
+
+	@GetMapping(path = "/companies?phone={phone}")
+	public ResponseEntity<Company> getCompanyByPhone(
+			@PathVariable("phone") String phone
+			){
+		
+		Company foundCompany = companyService.findByPhone(phone);
+		
+		if(foundCompany == null) {
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<>(foundCompany, HttpStatus.OK); 
+		}
+	
+	}
 	
 	/**
 	 * Create a company

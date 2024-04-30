@@ -26,8 +26,6 @@ public class VehicleService implements IVehicleService {
 		this.vehicleRepository = vehicleRepository;
 	}
 
-	
-	
 	@Override
 	public Vehicle create(Vehicle obj) {
 		
@@ -85,6 +83,70 @@ public class VehicleService implements IVehicleService {
 		
 		return vehiclesEntitiesList.stream().map(vehicle -> ServicesUtils.vehicleEntityToVehicle(vehicle))
 				.collect(Collectors.toList());
+	}
+
+	@Override
+	public List<Vehicle> findAllByBrand(String brand) {
+		
+		final List<VehicleEntity> foundVehicleEntity = vehicleRepository.findAllByBrand(brand);
+		
+		if(foundVehicleEntity.isEmpty()) {
+			return null;
+		}else{
+			return foundVehicleEntity.stream().map(vehicle -> ServicesUtils.vehicleEntityToVehicle(vehicle))
+					.collect(Collectors.toList());
+		}
+	}
+
+	@Override
+	public List<Vehicle> findAllByColor(String color) {
+		
+		final List<VehicleEntity> foundVehicleEntity = vehicleRepository.findAllByColor(color);
+		
+		if(foundVehicleEntity.isEmpty()) {
+			return null;
+		}else{
+			return foundVehicleEntity.stream().map(vehicle -> ServicesUtils.vehicleEntityToVehicle(vehicle))
+					.collect(Collectors.toList());
+		}
+	}
+
+	@Override
+	public List<Vehicle> findAllByModel(String model) {
+		
+		final List<VehicleEntity> foundVehicleEntity = vehicleRepository.findAllByModel(model);
+		
+		if(foundVehicleEntity.isEmpty()) {
+			return null;
+		}else{
+			return foundVehicleEntity.stream().map(vehicle -> ServicesUtils.vehicleEntityToVehicle(vehicle))
+					.collect(Collectors.toList());
+		}
+	}
+
+	@Override
+	public Vehicle findByPlate(String plate) {
+		
+		final Optional<VehicleEntity> foundVehicleEntity = vehicleRepository.findByPlate(plate);
+		
+		if(foundVehicleEntity.isEmpty()) {
+			return null;
+		}else{
+			return ServicesUtils.vehicleEntityToVehicle(foundVehicleEntity.get());
+		}
+	}
+
+	@Override
+	public List<Vehicle> findAllByType(String type) {
+		
+		final List<VehicleEntity> foundVehicleEntity = vehicleRepository.findAllByType(type);
+		
+		if(foundVehicleEntity.isEmpty()) {
+			return null;
+		}else{
+			return foundVehicleEntity.stream().map(vehicle -> ServicesUtils.vehicleEntityToVehicle(vehicle))
+					.collect(Collectors.toList());
+		}
 	}
 	
 }
