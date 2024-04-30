@@ -89,4 +89,41 @@ public class CompanyService implements ICompanyService {
 				.collect(Collectors.toList());
 	}
 
+	@Override
+	public Company findByCnpj(String cnpj) {
+		
+		final Optional<CompanyEntity> foundCompanyEntity = companyRepository.findByCnpj(cnpj);
+		
+		if(foundCompanyEntity.isEmpty()) {
+			return null;
+		}else{
+			return ServicesUtils.companyEntityToCompany(foundCompanyEntity.get());
+		}
+	}
+
+	@Override
+	public Company findByName(String name) {
+		
+		final Optional<CompanyEntity> foundCompanyEntity = companyRepository.findByName(name);
+		
+		if(foundCompanyEntity.isEmpty()) {
+			return null;
+		}else{
+			return ServicesUtils.companyEntityToCompany(foundCompanyEntity.get());
+		}
+		
+	}
+
+	@Override
+	public Company findByPhone(String phone) {
+		
+		final Optional<CompanyEntity> foundCompanyEntity = companyRepository.findByPhone(phone);
+		
+		if(foundCompanyEntity.isEmpty()) {
+			return null;
+		}else{
+			return ServicesUtils.companyEntityToCompany(foundCompanyEntity.get());
+		}
+	}
+
 }
