@@ -46,7 +46,6 @@ public class VehicleService implements IVehicleService {
 		vehicle.setModel(obj.getModel());
 		vehicle.setPlate(obj.getPlate());
 		vehicle.setType(obj.getType());
-		vehicle.setVehicleOwner(obj.getVehicleOwner());
 		
 		final VehicleEntity savedVehicle = vehicleRepository.save(vehicle);
 		
@@ -95,7 +94,6 @@ public class VehicleService implements IVehicleService {
 				.model(vehicle.getModel())
 				.plate(vehicle.getPlate())
 				.type(vehicle.getType())
-				.vehicleOwner(vehicle.getVehicleOwner())
 				.build();
 		
 		
@@ -109,7 +107,6 @@ public class VehicleService implements IVehicleService {
 				.model(vehicle.getModel())
 				.plate(vehicle.getPlate())
 				.type(vehicle.getType())
-				.vehicleOwner(vehicle.getVehicleOwner())
 				.build();
 	}
 	
