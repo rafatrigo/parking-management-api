@@ -33,10 +33,10 @@ public class CompanyEntity {
 	private String phone;
 
 	@OneToMany(mappedBy = "company")
+	@Column(nullable = true)
 	private Set<ParkingLotEntity> parkingLots;
 
 	@ManyToMany(mappedBy = "companies")
-	@Column(nullable = true)
 	private Set<UserEntity> users;
 	
 }

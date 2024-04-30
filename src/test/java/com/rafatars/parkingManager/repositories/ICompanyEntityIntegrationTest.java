@@ -13,7 +13,9 @@ import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.rafatars.parkingManager.TestDataUtils.TestDataUtilCompany;
+import com.rafatars.parkingManager.TestDataUtils.TestDataUtilParkingLot;
 import com.rafatars.parkingManager.entities.CompanyEntity;
+import com.rafatars.parkingManager.entities.ParkingLotEntity;
 import com.rafatars.parkingManager.respositories.ICompanyRepository;
 
 import jakarta.transaction.Transactional;
@@ -94,7 +96,34 @@ public class ICompanyEntityIntegrationTest {
 		assertThat(result).isEmpty();
 	}
 	
-	// TODO test that company can be found by name
-	// TODO test that can add parking lot to company
+	@Test
+	@Transactional // to avoid LazyInitializationException
+	public void testThatCompanyCanBeFoundByName() {
+		CompanyEntity comp = TestDataUtilCompany.createTestCompanyEntityA();
+		underTest.save(comp);
+		
+		Optional<CompanyEntity> result = underTest.findByName(comp.getName());
+		
+		assertThat(result).isPresent();
+		assertThat(result.get()).isEqualTo(comp);
+	}
+
+	// TODO test the CRUD operations for the parkingLots field
+
+	// @Test
+	// @Transactional // to avoid LazyInitializationException
+	// public void testThatCanAddParkingLotToCompany() {
+	// 	CompanyEntity comp = TestDataUtilCompany.createTestCompanyEntityA();
+	// 	underTest.save(comp);
+		
+	// 	assertThat(comp.getParkingLots()).isEmpty();
+		
+	// 	comp.getParkingLots().add(TestDataUtilParkingLot.createTestParkingLotEntityToTestInCompany(comp));
+	// 	underTest.save(comp);
+		
+	// 	Optional<CompanyEntity> result = underTest.findById(comp.getId());
+	// 	assertThat(result).isPresent();
+	// 	assertThat(result.get().getParkingLots()).hasSize(1);
+	// }
 	
 }
