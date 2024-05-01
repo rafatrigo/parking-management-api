@@ -66,12 +66,12 @@ public class CompanyController {
 			@PathVariable("name") String name
 			){
 		
-		Company foundCompany = companyService.findByName(name);
+		Optional<Company> foundCompany = companyService.findByName(name);
 		
-		if(foundCompany == null) {
+		if(foundCompany.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
-			return new ResponseEntity<>(foundCompany, HttpStatus.OK); 
+			return new ResponseEntity<>(foundCompany.get(), HttpStatus.OK); 
 		}
 	
 	}
@@ -81,12 +81,12 @@ public class CompanyController {
 			@PathVariable("cnpj") String cnpj
 			){
 		
-		Company foundCompany = companyService.findByCnpj(cnpj);
+		Optional<Company> foundCompany = companyService.findByCnpj(cnpj);
 		
-		if(foundCompany == null) {
+		if(foundCompany.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
-			return new ResponseEntity<>(foundCompany, HttpStatus.OK); 
+			return new ResponseEntity<>(foundCompany.get(), HttpStatus.OK); 
 		}
 	
 	}
@@ -96,12 +96,12 @@ public class CompanyController {
 			@PathVariable("phone") String phone
 			){
 		
-		Company foundCompany = companyService.findByPhone(phone);
+		Optional<Company> foundCompany = companyService.findByPhone(phone);
 		
-		if(foundCompany == null) {
+		if(foundCompany.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
-			return new ResponseEntity<>(foundCompany, HttpStatus.OK); 
+			return new ResponseEntity<>(foundCompany.get(), HttpStatus.OK); 
 		}
 	
 	}

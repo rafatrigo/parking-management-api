@@ -90,40 +90,27 @@ public class CompanyService implements ICompanyService {
 	}
 
 	@Override
-	public Company findByCnpj(String cnpj) {
+	public Optional<Company> findByCnpj(String cnpj) {
 		
 		final Optional<CompanyEntity> foundCompanyEntity = companyRepository.findByCnpj(cnpj);
 		
-		if(foundCompanyEntity.isEmpty()) {
-			return null;
-		}else{
-			return ServicesUtils.companyEntityToCompany(foundCompanyEntity.get());
-		}
+		return foundCompanyEntity.map(company -> ServicesUtils.companyEntityToCompany(company));
 	}
 
 	@Override
-	public Company findByName(String name) {
+	public Optional<Company> findByName(String name) {
 		
 		final Optional<CompanyEntity> foundCompanyEntity = companyRepository.findByName(name);
 		
-		if(foundCompanyEntity.isEmpty()) {
-			return null;
-		}else{
-			return ServicesUtils.companyEntityToCompany(foundCompanyEntity.get());
-		}
-		
+		return foundCompanyEntity.map(company -> ServicesUtils.companyEntityToCompany(company));
 	}
 
 	@Override
-	public Company findByPhone(String phone) {
+	public Optional<Company> findByPhone(String phone) {
 		
 		final Optional<CompanyEntity> foundCompanyEntity = companyRepository.findByPhone(phone);
 		
-		if(foundCompanyEntity.isEmpty()) {
-			return null;
-		}else{
-			return ServicesUtils.companyEntityToCompany(foundCompanyEntity.get());
-		}
+		return foundCompanyEntity.map(company -> ServicesUtils.companyEntityToCompany(company));
 	}
 
 }
