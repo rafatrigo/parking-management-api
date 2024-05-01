@@ -14,6 +14,8 @@ public class ServicesUtils {
 				.cnpj(companyEntity.getCnpj())
 				.address(companyEntity.getAddress())
 				.phone(companyEntity.getPhone())
+				.parkingLots(companyEntity.getParkingLots())
+				.users(companyEntity.getUsers())
 				.build();
     }
 
@@ -24,6 +26,8 @@ public class ServicesUtils {
 				.cnpj(company.getCnpj())
 				.address(company.getAddress())
 				.phone(company.getPhone())
+				.parkingLots(company.getParkingLots())
+				.users(company.getUsers())
 				.build();
     }
 
