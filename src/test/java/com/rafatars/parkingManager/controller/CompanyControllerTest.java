@@ -137,6 +137,145 @@ public class CompanyControllerTest {
 		
 		
 	}
+
+	@Test
+	public void testThatGetCompanyByCnpjReturnsHTTP200WhenCompanyExist() throws Exception {
+		Company compA = TestDataUtilCompany.createTestCompanyA();
+		compA.setId(null);
+		companyService.create(compA);
+
+		String cnpj = compA.getCnpj();
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/companies?cnpj=" + cnpj)
+				.contentType(MediaType.APPLICATION_JSON))
+			.andExpect(MockMvcResultMatchers.status().isOk());
+		
+	}
+
+	@Test
+	public void testThatGetCompanyByCnpjReturnsCompanyWhenCompanyExist() throws Exception {
+		Company compA = TestDataUtilCompany.createTestCompanyA();
+		compA.setId(null);
+		companyService.create(compA);
+
+		String cnpj = compA.getCnpj();
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/companies?cnpj=" + cnpj)
+				.contentType(MediaType.APPLICATION_JSON))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.id").isNumber())
+		.andExpect(MockMvcResultMatchers.jsonPath("$.name").value(compA.getName()))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.address").value(compA.getAddress()))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.phone").value(compA.getPhone()))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.cnpj").value(compA.getCnpj()));
+		
+	}
+
+	@Test
+	public void testThatGetCompanyByCnpjReturnsHTTP404WhenCompanyDoesNotExist() throws Exception {
+		Company compA = TestDataUtilCompany.createTestCompanyA();
+		compA.setId(null);
+		companyService.create(compA);
+
+		String cnpj = "00000";
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/companies?cnpj=" + cnpj)
+				.contentType(MediaType.APPLICATION_JSON))
+			.andExpect(MockMvcResultMatchers.status().isNotFound());
+		
+		
+	}
+
+	@Test
+	public void testThatGetCompanyByPhoneReturnsHTTP200WhenCompanyExist() throws Exception {
+		Company compA = TestDataUtilCompany.createTestCompanyA();
+		compA.setId(null);
+		companyService.create(compA);
+
+		String phone = compA.getPhone();
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/companies?phone=" + phone)
+				.contentType(MediaType.APPLICATION_JSON))
+			.andExpect(MockMvcResultMatchers.status().isOk());
+		
+	}
+
+	@Test
+	public void testThatGetCompanyByPhoneReturnsCompanyWhenCompanyExist() throws Exception {
+		Company compA = TestDataUtilCompany.createTestCompanyA();
+		compA.setId(null);
+		companyService.create(compA);
+
+		String phone = compA.getPhone();
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/companies?phone=" + phone)
+				.contentType(MediaType.APPLICATION_JSON))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.id").isNumber())
+		.andExpect(MockMvcResultMatchers.jsonPath("$.name").value(compA.getName()))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.address").value(compA.getAddress()))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.phone").value(compA.getPhone()))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.cnpj").value(compA.getCnpj()));
+		
+	}
+
+	@Test
+	public void testThatGetCompanyByPhoneReturnsHTTP404WhenCompanyDoesNotExist() throws Exception {
+		Company compA = TestDataUtilCompany.createTestCompanyA();
+		compA.setId(null);
+		companyService.create(compA);
+
+		String phone = "123";
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/companies?phone=" + phone)
+				.contentType(MediaType.APPLICATION_JSON))
+			.andExpect(MockMvcResultMatchers.status().isNotFound());
+		
+	}
+
+	@Test
+	public void testThatGetCompanyByNameReturnsHTTP200WhenCompanyExist() throws Exception {
+		Company compA = TestDataUtilCompany.createTestCompanyA();
+		compA.setId(null);
+		companyService.create(compA);
+
+		String name = compA.getName();
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/companies?name=" + name)
+				.contentType(MediaType.APPLICATION_JSON))
+			.andExpect(MockMvcResultMatchers.status().isOk());
+		
+	}
+
+	@Test
+	public void testThatGetCompanyByNameReturnsCompanyWhenCompanyExist() throws Exception {
+		Company compA = TestDataUtilCompany.createTestCompanyA();
+		compA.setId(null);
+		companyService.create(compA);
+
+		String name = compA.getName();
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/companies?name=" + name)
+				.contentType(MediaType.APPLICATION_JSON))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.id").isNumber())
+		.andExpect(MockMvcResultMatchers.jsonPath("$.name").value(compA.getName()))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.address").value(compA.getAddress()))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.phone").value(compA.getPhone()))
+		.andExpect(MockMvcResultMatchers.jsonPath("$.cnpj").value(compA.getCnpj()));
+		
+	}
+
+	@Test
+	public void testThatGetCompanyByNameReturnsHTTP404WhenCompanyDoesNotExist() throws Exception {
+		Company compA = TestDataUtilCompany.createTestCompanyA();
+		compA.setId(null);
+		companyService.create(compA);
+
+		String name = "name";
+		
+		mockMvc.perform(MockMvcRequestBuilders.get("/companies?name=" + name)
+				.contentType(MediaType.APPLICATION_JSON))
+			.andExpect(MockMvcResultMatchers.status().isNotFound());
+		
+	}
 	
 	
 	@Test

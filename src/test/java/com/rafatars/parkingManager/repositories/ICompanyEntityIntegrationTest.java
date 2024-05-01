@@ -95,10 +95,10 @@ public class ICompanyEntityIntegrationTest {
 		
 		assertThat(result).isEmpty();
 	}
-	
+
 	@Test
 	@Transactional // to avoid LazyInitializationException
-	public void testThatCompanyCanBeFoundByName() {
+	public void testThatCanFindCompanyByName() {
 		CompanyEntity comp = TestDataUtilCompany.createTestCompanyEntityA();
 		underTest.save(comp);
 		
@@ -106,6 +106,68 @@ public class ICompanyEntityIntegrationTest {
 		
 		assertThat(result).isPresent();
 		assertThat(result.get()).isEqualTo(comp);
+	}
+
+	@Test
+	@Transactional // to avoid LazyInitializationException
+	public void testThatIfCantFindCompanyByNameReturnsEmpty() {
+		CompanyEntity comp = TestDataUtilCompany.createTestCompanyEntityA();
+		
+		underTest.save(comp);
+		
+		Optional<CompanyEntity> result = underTest.findByName("Not found");
+		
+		assertThat(result).isEmpty();
+	}
+
+	@Test
+	@Transactional // to avoid LazyInitializationException
+	public void testThatCanFindCompanyByCnpj() {
+		CompanyEntity comp = TestDataUtilCompany.createTestCompanyEntityA();
+		
+		underTest.save(comp);
+		
+		Optional<CompanyEntity> result = underTest.findByCnpj(comp.getCnpj());
+		
+		assertThat(result).isPresent();
+		assertThat(result.get()).isEqualTo(comp);
+	}
+
+	@Test
+	@Transactional // to avoid LazyInitializationException
+	public void testThatIfCantFindCompanyByCnpjReturnsEmpty() {
+		CompanyEntity comp = TestDataUtilCompany.createTestCompanyEntityA();
+		
+		underTest.save(comp);
+		
+		Optional<CompanyEntity> result = underTest.findByCnpj("000000000000");
+		
+		assertThat(result).isEmpty();
+	}
+
+	@Test
+	@Transactional // to avoid LazyInitializationException
+	public void testThatCanFindCompanyByPhone() {
+		CompanyEntity comp = TestDataUtilCompany.createTestCompanyEntityA();
+		
+		underTest.save(comp);
+		
+		Optional<CompanyEntity> result = underTest.findByPhone(comp.getPhone());
+		
+		assertThat(result).isPresent();
+		assertThat(result.get()).isEqualTo(comp);
+	}
+
+	@Test
+	@Transactional // to avoid LazyInitializationException
+	public void testThatIfCantFindCompanyByPhoneReturnsEmpty() {
+		CompanyEntity comp = TestDataUtilCompany.createTestCompanyEntityA();
+		
+		underTest.save(comp);
+		
+		Optional<CompanyEntity> result = underTest.findByPhone("000000000000");
+		
+		assertThat(result).isEmpty();
 	}
 
 	// TODO test the CRUD operations for the parkingLots field

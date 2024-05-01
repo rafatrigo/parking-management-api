@@ -102,5 +102,82 @@ public class CompanyServiceTest {
 		assertThat(result).isEmpty();
 		
 	}
+
+	@Test
+	public void testThatCanFindCompanyByName() {
+		final Company company = TestDataUtilCompany.createTestCompanyA();
+		
+		when(companyRepository.findByName(company.getName()))
+			.thenReturn(Optional.of(ServicesUtils.companyToCompanyEntity(company)));
+		
+		final Optional<Company> foundCompany = underTest.findByName(company.getName());
+		
+		assertThat(foundCompany.get()).isEqualTo(company);
+	}
+
+	@Test
+	public void testThatIfCompanyNotFoundByNameReturnsAnEmptyOptional() {
+		final String name = "Company A";
+		
+		when(companyRepository.findByName(name))
+		.thenReturn(Optional.empty());
+		
+		final Optional<Company> result = underTest.findByName(name);
+		
+		assertThat(result).isEmpty();
+		
+	}
+
+	@Test
+	public void testThatCanFindCompanyByCnpj() {
+		final Company company = TestDataUtilCompany.createTestCompanyA();
+		
+		when(companyRepository.findByCnpj(company.getCnpj()))
+			.thenReturn(Optional.of(ServicesUtils.companyToCompanyEntity(company)));
+		
+		final Optional<Company> foundCompany = underTest.findByCnpj(company.getCnpj());
+		
+		assertThat(foundCompany.get()).isEqualTo(company);
+	}
+
+	@Test
+	public void testThatIfCompanyNotFoundByCnpjReturnsAnEmptyOptional() {
+		final String cnpj = "12345678901234";
+		
+		when(companyRepository.findByCnpj(cnpj))
+		.thenReturn(Optional.empty());
+
+		final Optional<Company> result = underTest.findByCnpj(cnpj);
+
+		assertThat(result).isEmpty();
+
+	}
+
+	@Test
+	public void testThatCanFindCompanyByPhone(){
+
+		final Company company = TestDataUtilCompany.createTestCompanyA();
+
+		when(companyRepository.findByPhone(company.getPhone()))
+			.thenReturn(Optional.of(ServicesUtils.companyToCompanyEntity(company)));
+
+		final Optional<Company> foundCompany = underTest.findByPhone(company.getPhone());
+
+		assertThat(foundCompany.get()).isEqualTo(company);
+		
+	}
+
+	@Test
+	public void testThatIfCompanyNotFoundByPhoneReturnsAnEmptyOptional() {
+		final String phone = "1234567890";
+		
+		when(companyRepository.findByPhone(phone))
+		.thenReturn(Optional.empty());
+
+		final Optional<Company> result = underTest.findByPhone(phone);
+
+		assertThat(result).isEmpty();
+
+	}
 	
 }
