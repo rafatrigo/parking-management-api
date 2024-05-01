@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -61,9 +62,9 @@ public class CompanyController {
 	
 	}
 
-	@GetMapping(path = "/companies?name={name}")
+	@GetMapping(path = "/companies", params = "name")
 	public ResponseEntity<Company> getCompanyByName(
-			@PathVariable("name") String name
+			@Param("name") String name
 			){
 		
 		Optional<Company> foundCompany = companyService.findByName(name);
@@ -76,9 +77,9 @@ public class CompanyController {
 	
 	}
 
-	@GetMapping(path = "/companies?cnpj={cnpj}")
+	@GetMapping(path = "/companies", params = "cnpj")
 	public ResponseEntity<Company> getCompanyByCnpj(
-			@PathVariable("cnpj") String cnpj
+			@Param("cnpj") String cnpj
 			){
 		
 		Optional<Company> foundCompany = companyService.findByCnpj(cnpj);
@@ -91,17 +92,17 @@ public class CompanyController {
 	
 	}
 
-	@GetMapping(path = "/companies?phone={phone}")
+	@GetMapping(path = "/companies", params = "phone")
 	public ResponseEntity<Company> getCompanyByPhone(
-			@PathVariable("phone") String phone
+			@Param("phone") String phone
 			){
 		
 		Optional<Company> foundCompany = companyService.findByPhone(phone);
 		
-		if(foundCompany.isEmpty()) {
+		if(foundCompany.isEmpty()){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
-		}else {
-			return new ResponseEntity<>(foundCompany.get(), HttpStatus.OK); 
+		}else{
+			return new ResponseEntity<>(foundCompany.get(), HttpStatus.OK);
 		}
 	
 	}

@@ -4,6 +4,7 @@ import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.DeleteMapping;
@@ -49,8 +50,8 @@ public class VehicleController {
 		
 	}
 
-	@GetMapping(path = "/vehicles?plate={plate}")
-	public ResponseEntity<Vehicle> getVehicleByPlate(@PathVariable("plate") String plate) {
+	@GetMapping(path = "/vehicles", params = "plate")
+	public ResponseEntity<Vehicle> getVehicleByPlate(@Param("plate") String plate) {
 		
 		final Vehicle foundVehicle = vehicleService.findByPlate(plate);
 		
@@ -62,8 +63,8 @@ public class VehicleController {
 		
 	}
 
-	@GetMapping(path = "/vehicles?model={model}")
-	public List<Vehicle> getVehicleByModel(@PathVariable("model") String model) {
+	@GetMapping(path = "/vehicles", params = "model")
+	public List<Vehicle> getVehicleByModel(@Param("model") String model) {
 		
 		final List<Vehicle> foundVehicles = vehicleService.findAllByModel(model);
 		
@@ -71,8 +72,8 @@ public class VehicleController {
 		
 	}
 
-	@GetMapping(path = "/vehicles?brand={brand}")
-	public List<Vehicle> getVehicleByBrand(@PathVariable("brand") String brand) {
+	@GetMapping(path = "/vehicles", params = "brand")
+	public List<Vehicle> getVehicleByBrand(@Param("brand") String brand) {
 		
 		final List<Vehicle> foundVehicles = vehicleService.findAllByBrand(brand);
 		
@@ -80,8 +81,8 @@ public class VehicleController {
 		
 	}
 
-	@GetMapping(path = "/vehicles?color={color}")
-	public List<Vehicle> getVehicleByColor(@PathVariable("color") String color) {
+	@GetMapping(path = "/vehicles", params = "color")
+	public List<Vehicle> getVehicleByColor(@Param("color") String color) {
 		
 		final List<Vehicle> foundVehicles = vehicleService.findAllByColor(color);
 		
@@ -89,8 +90,8 @@ public class VehicleController {
 		
 	}
 
-	@GetMapping(path = "/vehicles?type={type}")
-	public List<Vehicle> getVehicleByType(@PathVariable("type") String type) {
+	@GetMapping(path = "/vehicles", params = "type")
+	public List<Vehicle> getVehicleByType(@Param("type") String type) {
 		
 		final List<Vehicle> foundVehicles = vehicleService.findAllByType(type);
 		
