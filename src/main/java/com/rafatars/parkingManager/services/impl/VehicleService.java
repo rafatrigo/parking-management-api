@@ -1,5 +1,6 @@
 package com.rafatars.parkingManager.services.impl;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 import java.util.stream.Collectors;
@@ -10,6 +11,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.rafatars.parkingManager.entities.VehicleEntity;
+import com.rafatars.parkingManager.entities.VehicleType;
 import com.rafatars.parkingManager.entities.mirrors.Vehicle;
 import com.rafatars.parkingManager.respositories.IVehicleRepository;
 import com.rafatars.parkingManager.services.IVehicleService;
@@ -91,7 +93,7 @@ public class VehicleService implements IVehicleService {
 		final List<VehicleEntity> foundVehicleEntity = vehicleRepository.findAllByBrand(brand);
 		
 		if(foundVehicleEntity.isEmpty()) {
-			return null;
+			return List.of();
 		}else{
 			return foundVehicleEntity.stream().map(vehicle -> ServicesUtils.vehicleEntityToVehicle(vehicle))
 					.collect(Collectors.toList());
@@ -104,7 +106,7 @@ public class VehicleService implements IVehicleService {
 		final List<VehicleEntity> foundVehicleEntity = vehicleRepository.findAllByColor(color);
 		
 		if(foundVehicleEntity.isEmpty()) {
-			return null;
+			return List.of();
 		}else{
 			return foundVehicleEntity.stream().map(vehicle -> ServicesUtils.vehicleEntityToVehicle(vehicle))
 					.collect(Collectors.toList());
@@ -117,7 +119,7 @@ public class VehicleService implements IVehicleService {
 		final List<VehicleEntity> foundVehicleEntity = vehicleRepository.findAllByModel(model);
 		
 		if(foundVehicleEntity.isEmpty()) {
-			return null;
+			return List.of();
 		}else{
 			return foundVehicleEntity.stream().map(vehicle -> ServicesUtils.vehicleEntityToVehicle(vehicle))
 					.collect(Collectors.toList());
@@ -125,24 +127,24 @@ public class VehicleService implements IVehicleService {
 	}
 
 	@Override
-	public Vehicle findByPlate(String plate) {
+	public Optional<Vehicle> findByPlate(String plate) {
 		
 		final Optional<VehicleEntity> foundVehicleEntity = vehicleRepository.findByPlate(plate);
 		
 		if(foundVehicleEntity.isEmpty()) {
-			return null;
+			return Optional.empty();
 		}else{
-			return ServicesUtils.vehicleEntityToVehicle(foundVehicleEntity.get());
+			return foundVehicleEntity.map(vehicle -> ServicesUtils.vehicleEntityToVehicle(vehicle));
 		}
 	}
 
 	@Override
-	public List<Vehicle> findAllByType(String type) {
+	public List<Vehicle> findAllByType(VehicleType type) {
 		
 		final List<VehicleEntity> foundVehicleEntity = vehicleRepository.findAllByType(type);
 		
 		if(foundVehicleEntity.isEmpty()) {
-			return null;
+			return List.of();
 		}else{
 			return foundVehicleEntity.stream().map(vehicle -> ServicesUtils.vehicleEntityToVehicle(vehicle))
 					.collect(Collectors.toList());

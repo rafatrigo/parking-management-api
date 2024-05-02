@@ -15,6 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rafatars.parkingManager.entities.VehicleType;
 import com.rafatars.parkingManager.entities.mirrors.Vehicle;
 import com.rafatars.parkingManager.services.IVehicleService;
 
@@ -53,49 +54,65 @@ public class VehicleController {
 	@GetMapping(path = "/vehicles", params = "plate")
 	public ResponseEntity<Vehicle> getVehicleByPlate(@Param("plate") String plate) {
 		
-		final Vehicle foundVehicle = vehicleService.findByPlate(plate);
+		final Optional<Vehicle> foundVehicle = vehicleService.findByPlate(plate);
 		
-		if(foundVehicle == null) {
+		if(foundVehicle.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
-			return new ResponseEntity<>(foundVehicle, HttpStatus.OK);
+			return new ResponseEntity<>(foundVehicle.get(), HttpStatus.OK);
 		}
 		
 	}
 
 	@GetMapping(path = "/vehicles", params = "model")
-	public List<Vehicle> getVehicleByModel(@Param("model") String model) {
+	public ResponseEntity<List<Vehicle>> getVehicleByModel(@Param("model") String model) {
 		
 		final List<Vehicle> foundVehicles = vehicleService.findAllByModel(model);
 		
-		return foundVehicles;
+		if(foundVehicles.isEmpty()){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<>(foundVehicles, HttpStatus.OK);
+		}
 		
 	}
 
 	@GetMapping(path = "/vehicles", params = "brand")
-	public List<Vehicle> getVehicleByBrand(@Param("brand") String brand) {
+	public ResponseEntity<List<Vehicle>> getVehicleByBrand(@Param("brand") String brand) {
 		
 		final List<Vehicle> foundVehicles = vehicleService.findAllByBrand(brand);
 		
-		return foundVehicles;
+		if(foundVehicles.isEmpty()){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<>(foundVehicles, HttpStatus.OK);
+		}
 		
 	}
 
 	@GetMapping(path = "/vehicles", params = "color")
-	public List<Vehicle> getVehicleByColor(@Param("color") String color) {
+	public ResponseEntity<List<Vehicle>> getVehicleByColor(@Param("color") String color) {
 		
 		final List<Vehicle> foundVehicles = vehicleService.findAllByColor(color);
 		
-		return foundVehicles;
+		if(foundVehicles.isEmpty()){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<>(foundVehicles, HttpStatus.OK);
+		}
 		
 	}
 
 	@GetMapping(path = "/vehicles", params = "type")
-	public List<Vehicle> getVehicleByType(@Param("type") String type) {
+	public ResponseEntity<List<Vehicle>> getVehicleByType(@Param("type") VehicleType type) {
 		
 		final List<Vehicle> foundVehicles = vehicleService.findAllByType(type);
 		
-		return foundVehicles;
+		if(foundVehicles.isEmpty()){
+			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
+		}else {
+			return new ResponseEntity<>(foundVehicles, HttpStatus.OK);
+		}
 		
 	}
 	
@@ -126,7 +143,7 @@ public class VehicleController {
 	}
 	
 	@DeleteMapping(path = "/vehicles/{id}")
-	public <T> ResponseEntity<T> deleteVehicle(@PathVariable("id") Long id) {
+	public ResponseEntity<Vehicle> deleteVehicle(@PathVariable("id") Long id) {
 		
 		final Optional<Vehicle> vehicle = vehicleService.findById(id);
 		

@@ -7,6 +7,7 @@ import org.springframework.data.repository.CrudRepository;
 import org.springframework.stereotype.Repository;
 
 import com.rafatars.parkingManager.entities.VehicleEntity;
+import com.rafatars.parkingManager.entities.VehicleType;
 
 @Repository
 public interface IVehicleRepository extends CrudRepository<VehicleEntity, Long> {
@@ -14,5 +15,5 @@ public interface IVehicleRepository extends CrudRepository<VehicleEntity, Long> 
     List<VehicleEntity> findAllByModel(String model);
     List<VehicleEntity> findAllByBrand(String brand);
     List<VehicleEntity> findAllByColor(String color);
-    List<VehicleEntity> findAllByType(String type);
+    List<VehicleEntity> findAllByType(VehicleType type);
 }

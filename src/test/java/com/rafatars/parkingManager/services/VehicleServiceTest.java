@@ -1,91 +1,302 @@
-// package com.rafatars.parkingManager.services;
+package com.rafatars.parkingManager.services;
 
-// import static org.assertj.core.api.Assertions.assertThat;
-// import static org.junit.jupiter.api.Assertions.assertEquals;
-// import static org.mockito.Mockito.times;
-// import static org.mockito.Mockito.verify;
-// import static org.mockito.Mockito.when;
+import static org.assertj.core.api.Assertions.assertThat;
+import static org.junit.jupiter.api.Assertions.assertEquals;
+import static org.mockito.Mockito.times;
+import static org.mockito.Mockito.verify;
+import static org.mockito.Mockito.when;
 
-// import java.util.Optional;
+import java.security.Provider.Service;
+import java.util.ArrayList;
+import java.util.Optional;
 
-// import org.junit.jupiter.api.Test;
-// import org.junit.jupiter.api.extension.ExtendWith;
-// import org.mockito.InjectMocks;
-// import org.mockito.Mock;
-// import org.mockito.junit.jupiter.MockitoExtension;
+import org.junit.jupiter.api.Test;
+import org.junit.jupiter.api.extension.ExtendWith;
+import org.mockito.InjectMocks;
+import org.mockito.Mock;
+import org.mockito.junit.jupiter.MockitoExtension;
 
-// import com.rafatars.parkingManager.TestDataUtil;
-// import com.rafatars.parkingManager.entities.VehicleEntity;
-// import com.rafatars.parkingManager.entities.mirrors.Vehicle;
-// import com.rafatars.parkingManager.respositories.IVehicleRepository;
-// import com.rafatars.parkingManager.services.impl.VehicleService;
+import com.rafatars.parkingManager.TestDataUtils.TestDataUtilCompany;
+import com.rafatars.parkingManager.TestDataUtils.TestDataUtilVehicle;
+import com.rafatars.parkingManager.entities.CompanyEntity;
+import com.rafatars.parkingManager.entities.VehicleEntity;
+import com.rafatars.parkingManager.entities.VehicleType;
+import com.rafatars.parkingManager.entities.mirrors.Company;
+import com.rafatars.parkingManager.entities.mirrors.Vehicle;
+import com.rafatars.parkingManager.respositories.IVehicleRepository;
+import com.rafatars.parkingManager.services.impl.VehicleService;
+import com.rafatars.parkingManager.services.util.ServicesUtils;
 
-// @ExtendWith(MockitoExtension.class)
-// public class VehicleServiceTest {
+@ExtendWith(MockitoExtension.class)
+public class VehicleServiceTest {
 	
-// 	@Mock
-// 	private IVehicleRepository vehicleRepository;
+	@Mock
+	private IVehicleRepository vehicleRepository;
 	
-// 	@InjectMocks
-// 	private VehicleService underTest;
+	@InjectMocks
+	private VehicleService underTest;
 	
-// 	@Test
-// 	public void testThatVehicleCanBeCreated() {
+	@Test
+    public void testThatVehicleCanBeCreated() {
+
+        final VehicleEntity vehicleEntity = TestDataUtilVehicle.createTestVehicleEntityA();
+        final Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(vehicleEntity);
+        
+        when(vehicleRepository.save(vehicleEntity)).thenReturn(vehicleEntity);
+
+        final Vehicle createdVehicle = underTest.create(vehicle);
+
+        assertEquals(vehicle, createdVehicle);
+        
+    }
+
+    @Test
+    public void testThatVehicleCanBeDeleted() {
+
+        final Long id = 1L;
 		
-// 		final Vehicle vehicle = TestDataUtil.createTestVehicleWithoutCompanyA();
-		
-// 		final VehicleEntity vehicleEntity = underTest.vehicleToVehicleEntity(vehicle);
-		
-// 		when(vehicleRepository.save(vehicleEntity)).thenReturn(vehicleEntity);
-		
-// 		final Vehicle created = underTest.create(vehicle);
-		
-// 		assertEquals(created, vehicle);
-		
-// 	}
+		underTest.deleteById(id);
+		verify(vehicleRepository, times(1)).deleteById(id);
+        
+    }
 	
-// 	@Test
-// 	public void testThatVehicleCanBeUpdated() {
-// 		final Vehicle oldVehicle = TestDataUtil.createTestVehicleWithoutCompanyA();
+    @Test
+    public void testThatVehicleCanBeUpdated() {
+
+       final Vehicle oldVehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
 		
-// 		Vehicle newVehicle = TestDataUtil.createTestVehicleWithoutCompanyB();
+		Vehicle newVehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityB());
 		
-// 		VehicleEntity savedMockReturn = underTest.vehicleToVehicleEntity(newVehicle);
-// 		savedMockReturn.setId(oldVehicle.getId());
+		VehicleEntity saveMockReturn = ServicesUtils.vehicleToVehicleEntity(newVehicle);
 		
-// 		when(vehicleRepository.findById(oldVehicle.getId()))
-// 			.thenReturn(Optional.of(underTest.vehicleToVehicleEntity(oldVehicle)));
+		saveMockReturn.setId(oldVehicle.getId());
 		
-// 		when(vehicleRepository.save(savedMockReturn)).thenReturn(savedMockReturn);
+		when(vehicleRepository.findById(oldVehicle.getId()))
+			.thenReturn(Optional.of(ServicesUtils.vehicleToVehicleEntity(oldVehicle)));
 		
-// 		final Vehicle updatedVehicle = underTest.update(oldVehicle.getId(), newVehicle);
+		when(vehicleRepository.save(saveMockReturn)).thenReturn(saveMockReturn);
 		
-// 		newVehicle.setId(oldVehicle.getId());
+		final Vehicle updatedVehicle = underTest.update(oldVehicle.getId(), newVehicle);
 		
-// 		assertEquals(updatedVehicle, newVehicle);
+		newVehicle.setId(oldVehicle.getId());
 		
-// 	}
-	
-// 	@Test
-// 	public void testThatTheVehicleCanBeDeleted() {
-// 		final Long id = 1L;
-		
-// 		underTest.deleteById(id);
-		
-// 		verify(vehicleRepository, times(1)).deleteById(id);
-// 	}
-	
-// 	@Test
-// 	public void testThatCanFindVehicleById() {
-		
-// 		final Vehicle vehicle = TestDataUtil.createTestVehicleWithoutCompanyA();
-		
-// 		when(vehicleRepository.findById(vehicle.getId()))
-// 			.thenReturn(Optional.of(underTest.vehicleToVehicleEntity(vehicle)));
-		
-// 		final Optional<Vehicle> foundVehicle = underTest.findById(vehicle.getId());
-		
-// 		assertThat(foundVehicle.get()).isEqualTo(vehicle);
-// 	}
-	
-// }
+		assertEquals(updatedVehicle, newVehicle);
+        
+    }
+
+    @Test
+    public void testThatCanFindVehicleById() {
+
+        final Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+
+        when(vehicleRepository.findById(vehicle.getId()))
+            .thenReturn(Optional.of(ServicesUtils.vehicleToVehicleEntity(vehicle)));
+
+        final Optional<Vehicle> foundVehicle = underTest.findById(vehicle.getId());
+
+        assertThat(foundVehicle.get()).isEqualTo(vehicle);
+        
+    }
+
+    @Test
+    public void testThatIfVehicleNotFoundReturnsAnEmptyOptional() {
+
+        final Long id = 1L;
+
+        when(vehicleRepository.findById(id))
+            .thenReturn(Optional.empty());
+
+        final Optional<Vehicle> result = underTest.findById(id);
+
+        assertThat(result).isEmpty();
+    }
+
+    @Test
+    public void testThatCanFindAllVehicles() {
+
+        final VehicleEntity vehicleEntityA = TestDataUtilVehicle.createTestVehicleEntityA();
+        final VehicleEntity vehicleEntityB = TestDataUtilVehicle.createTestVehicleEntityB();
+
+        ArrayList<VehicleEntity> vehicles = new ArrayList<>();
+
+        vehicles.add(vehicleEntityA);
+        vehicles.add(vehicleEntityB);
+
+        when(vehicleRepository.findAll())
+            .thenReturn(vehicles);
+
+        final int expectedSize = vehicles.size();
+        final int actualSize = underTest.FindAll().size();
+
+        assertEquals(expectedSize, actualSize);
+        
+    }
+
+    @Test
+    public void testThatCanFindVehicleByPlate() {
+
+        final Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+
+        when(vehicleRepository.findByPlate(vehicle.getPlate()))
+            .thenReturn(Optional.of(ServicesUtils.vehicleToVehicleEntity(vehicle)));
+
+        final Optional<Vehicle> foundVehicle = underTest.findByPlate(vehicle.getPlate());
+
+        assertThat(foundVehicle.get()).isEqualTo(vehicle);
+        
+    }
+
+    @Test
+    public void testThatIfCantFindVehicleByPlateReturnsEmptyOptional() {
+
+        final String plate = "ABC123";
+
+        when(vehicleRepository.findByPlate(plate))
+            .thenReturn(Optional.empty());
+
+        final Optional<Vehicle> result = underTest.findByPlate(plate);
+
+        assertThat(result).isEmpty();
+        
+    }
+
+    @Test
+    public void testThatCanFindAllVehiclesByType() {
+
+        final VehicleEntity vehicleEntityA = TestDataUtilVehicle.createTestVehicleEntityA();
+        final VehicleEntity vehicleEntityB = TestDataUtilVehicle.createTestVehicleEntityB();
+
+        ArrayList<VehicleEntity> vehicles = new ArrayList<>();
+
+        vehicles.add(vehicleEntityA);
+        vehicles.add(vehicleEntityB);
+
+        when(vehicleRepository.findAllByType(vehicleEntityA.getType()))
+            .thenReturn(vehicles);
+
+        final int expectedSize = vehicles.size();
+        final int actualSize = underTest.findAllByType(vehicleEntityA.getType()).size();
+
+        assertEquals(expectedSize, actualSize);
+        
+    }
+
+    @Test
+    public void testThatCantFindAllVehiclesByTypeReturnsEmptyList() {
+
+        final VehicleType type = VehicleType.CAR;
+
+        when(vehicleRepository.findAllByType(type))
+            .thenReturn(new ArrayList<>());
+
+        final int result = underTest.findAllByType(type).size();
+
+        assertEquals(0, result);
+        
+    }
+
+    @Test
+    public void testThatCanFindAllVehiclesByColor() {
+
+        final VehicleEntity vehicleEntityA = TestDataUtilVehicle.createTestVehicleEntityA();
+
+        ArrayList<VehicleEntity> vehicles = new ArrayList<>();
+
+        vehicles.add(vehicleEntityA);
+
+        when(vehicleRepository.findAllByColor(vehicleEntityA.getColor()))
+            .thenReturn(vehicles);
+
+        final int expectedSize = vehicles.size();
+        final int actualSize = underTest.findAllByColor(vehicleEntityA.getColor()).size();
+
+        assertEquals(expectedSize, actualSize);
+        
+    }
+
+    @Test
+    public void testThatIfCantFindVehiclesByColorReturnsEmptyList() {
+
+        final String color = "Black";
+
+        when(vehicleRepository.findAllByColor(color))
+            .thenReturn(new ArrayList<>());
+
+        final int result = underTest.findAllByColor(color).size();
+
+        assertEquals(0, result);
+        
+    }
+
+    @Test
+    public void testThatCanFindAllVehiclesByBrand() {
+
+        final VehicleEntity vehicleEntityA = TestDataUtilVehicle.createTestVehicleEntityA();
+        final VehicleEntity vehicleEntityB = TestDataUtilVehicle.createTestVehicleEntityB();
+
+        ArrayList<VehicleEntity> vehicles = new ArrayList<>();
+
+        vehicles.add(vehicleEntityA);
+        vehicles.add(vehicleEntityB);
+
+        when(vehicleRepository.findAllByBrand(vehicleEntityA.getBrand()))
+            .thenReturn(vehicles);
+
+        final int expectedSize = vehicles.size();
+        final int actualSize = underTest.findAllByBrand(vehicleEntityA.getBrand()).size();
+
+        assertEquals(expectedSize, actualSize);
+        
+    }
+
+    @Test
+    public void testThatIfCantFindVehiclesByBrandReturnsEmptyList() {
+
+        final String brand = "NewBrand";
+
+        when(vehicleRepository.findAllByBrand(brand))
+            .thenReturn(new ArrayList<>());
+
+        final int result = underTest.findAllByBrand(brand).size();
+
+        assertEquals(0, result);
+        
+    }
+
+    @Test
+    public void testThatCanFindAllVehiclesByModel() {
+
+        final VehicleEntity vehicleEntityA = TestDataUtilVehicle.createTestVehicleEntityA();
+        final VehicleEntity vehicleEntityB = TestDataUtilVehicle.createTestVehicleEntityB();
+
+        ArrayList<VehicleEntity> vehicles = new ArrayList<>();
+
+        vehicles.add(vehicleEntityA);
+        vehicles.add(vehicleEntityB);
+
+        when(vehicleRepository.findAllByModel(vehicleEntityA.getModel()))
+            .thenReturn(vehicles);
+
+        final int expectedSize = vehicles.size();
+        final int actualSize = underTest.findAllByModel(vehicleEntityA.getModel()).size();
+
+        assertEquals(expectedSize, actualSize);
+        
+    }
+
+    @Test
+    public void testThatIfCantFindVehiclesByModelReturnsEmptyList() {
+
+        final String model = "NewModel";
+
+        when(vehicleRepository.findAllByModel(model))
+            .thenReturn(new ArrayList<>());
+
+        final int result = underTest.findAllByModel(model).size();
+
+        assertEquals(0, result);
+        
+    }
+
+    
+}
