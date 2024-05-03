@@ -2,7 +2,6 @@ package com.rafatars.parkingManager.entities;
 
 import java.time.ZonedDateTime;
 
-import jakarta.annotation.Generated;
 import jakarta.persistence.Entity;
 import jakarta.persistence.GeneratedValue;
 import jakarta.persistence.GenerationType;
@@ -21,7 +20,7 @@ import lombok.NoArgsConstructor;
 @Builder
 @Entity
 @Table(name = "stores")
-public class StoreEntity {
+public class RegisterEntity {
     
     // TODO make it an embedded id using the parkingLot and the arrival time.
     @Id

@@ -37,5 +37,5 @@ public class ParkingLotEntity {
     private CompanyEntity company;
 
     @OneToMany(mappedBy = "parkingLot")
-    private Set<StoreEntity> stores;
+    private Set<RegisterEntity> registers;
 }

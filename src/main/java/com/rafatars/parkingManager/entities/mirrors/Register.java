@@ -17,7 +17,7 @@ import lombok.NoArgsConstructor;
 @AllArgsConstructor
 @NoArgsConstructor
 @Builder
-public class Store {
+public class Register {
     
     private Long id;
     private ZonedDateTime arrival;
