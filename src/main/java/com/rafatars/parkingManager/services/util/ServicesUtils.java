@@ -1,8 +1,10 @@
 package com.rafatars.parkingManager.services.util;
 
 import com.rafatars.parkingManager.entities.CompanyEntity;
+import com.rafatars.parkingManager.entities.ParkingLotEntity;
 import com.rafatars.parkingManager.entities.VehicleEntity;
 import com.rafatars.parkingManager.entities.mirrors.Company;
+import com.rafatars.parkingManager.entities.mirrors.ParkingLot;
 import com.rafatars.parkingManager.entities.mirrors.Vehicle;
 
 public class ServicesUtils {
@@ -52,6 +54,30 @@ public class ServicesUtils {
 				.model(vehicle.getModel())
 				.plate(vehicle.getPlate())
 				.type(vehicle.getType())
+				.build();
+	}
+
+	public static ParkingLot parkingLotEntityToParkingLot(ParkingLotEntity parkingLot) {
+		return ParkingLot.builder()
+				.id(parkingLot.getId())
+				.name(parkingLot.getName())
+				.address(parkingLot.getAddress())
+				.phone(parkingLot.getPhone())
+				.carSpaces(parkingLot.getCarSpaces())
+				.motorcycleSpaces(parkingLot.getMotorcycleSpaces())
+				.company(parkingLot.getCompany())
+				.build();
+	}
+
+	public static ParkingLotEntity parkingLotToParkingLotEntity(ParkingLot parkingLot) {
+		return ParkingLotEntity.builder()
+				.id(parkingLot.getId())
+				.name(parkingLot.getName())
+				.address(parkingLot.getAddress())
+				.phone(parkingLot.getPhone())
+				.carSpaces(parkingLot.getCarSpaces())
+				.motorcycleSpaces(parkingLot.getMotorcycleSpaces())
+				.company(parkingLot.getCompany())
 				.build();
 	}
     
