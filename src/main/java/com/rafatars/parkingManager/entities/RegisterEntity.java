@@ -28,6 +28,7 @@ public class RegisterEntity {
     private Long id;
     private ZonedDateTime arrival;
     private ZonedDateTime departure;
+    private Boolean open;
 
     @ManyToOne
     @JoinColumn(name = "parkingLot_id")

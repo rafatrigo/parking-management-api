@@ -22,6 +22,7 @@ public class Register {
     private Long id;
     private ZonedDateTime arrival;
     private ZonedDateTime departure;
+    private Boolean open;
 
     private ParkingLot parkingLot;
     private VehicleEntity vehicle;
