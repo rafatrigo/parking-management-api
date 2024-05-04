@@ -6,11 +6,11 @@ Personal project to study Spring Boot
 ---
 ### Next Steps
 
-- [ ] Make Parking Lot service
-    - [ ] CRUD
-    - [ ] Find all
-    - [ ] Find by id
-- [ ] Make the tests to the Parking Lot services
+- [x] Make Parking Lot service
+    - [x] CRUD
+    - [x] Find all
+    - [x] Find by id
+- [x] Make the tests to the Parking Lot services
 - [ ] Make Parking Lot controller
     - [ ] CRUD
     - [ ] Find all
