@@ -13,9 +13,7 @@ import org.springframework.test.annotation.DirtiesContext.ClassMode;
 import org.springframework.test.context.junit.jupiter.SpringExtension;
 
 import com.rafatars.parkingManager.TestDataUtils.TestDataUtilCompany;
-import com.rafatars.parkingManager.TestDataUtils.TestDataUtilParkingLot;
 import com.rafatars.parkingManager.entities.CompanyEntity;
-import com.rafatars.parkingManager.entities.ParkingLotEntity;
 import com.rafatars.parkingManager.respositories.ICompanyRepository;
 
 import jakarta.transaction.Transactional;

@@ -6,7 +6,6 @@ import static org.mockito.Mockito.times;
 import static org.mockito.Mockito.verify;
 import static org.mockito.Mockito.when;
 
-import java.security.Provider.Service;
 import java.util.ArrayList;
 import java.util.Optional;
 
@@ -16,12 +15,9 @@ import org.mockito.InjectMocks;
 import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
-import com.rafatars.parkingManager.TestDataUtils.TestDataUtilCompany;
 import com.rafatars.parkingManager.TestDataUtils.TestDataUtilVehicle;
-import com.rafatars.parkingManager.entities.CompanyEntity;
 import com.rafatars.parkingManager.entities.VehicleEntity;
 import com.rafatars.parkingManager.entities.VehicleType;
-import com.rafatars.parkingManager.entities.mirrors.Company;
 import com.rafatars.parkingManager.entities.mirrors.Vehicle;
 import com.rafatars.parkingManager.respositories.IVehicleRepository;
 import com.rafatars.parkingManager.services.impl.VehicleService;
