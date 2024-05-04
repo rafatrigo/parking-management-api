@@ -32,6 +32,7 @@ public class ParkingLotEntity {
     private int carSpaces;
     private int motorcycleSpaces;
 
+    //TODO: insted of using CompanyEntity company, use Long companyId
     @ManyToOne
     @JoinColumn(name = "company_id", nullable = false)
     private CompanyEntity company;
