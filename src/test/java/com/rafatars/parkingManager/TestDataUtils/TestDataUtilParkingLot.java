@@ -31,7 +31,7 @@ public class TestDataUtilParkingLot {
 				.build();
 	}
 
-	// Create a parking lot to use in the CompanyEntityIntegrationTest
+	// Create a parking lot to use in the CompanyEntityIntegrationTest and ParkingLotEntityIntegrationTest
 	public static ParkingLotEntity createTestParkingLotEntityToTestInCompany(CompanyEntity company) {
 		
 		return ParkingLotEntity.builder()
