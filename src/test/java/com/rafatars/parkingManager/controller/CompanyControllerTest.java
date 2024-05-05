@@ -2,6 +2,7 @@ package com.rafatars.parkingManager.controller;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,8 +15,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.rafatars.parkingManager.TestDataUtils.TestDataUtilCompany;
-import com.rafatars.parkingManager.entities.mirrors.Company;
+import com.rafatars.parkingManager.entities.dtos.CompanyDTO;
 import com.rafatars.parkingManager.services.impl.CompanyService;
 
 @SpringBootTest
@@ -42,7 +44,7 @@ public class CompanyControllerTest {
 
 	@Test
 	public void testThatCreateCompanyReturnsHTTP201() throws Exception {
-		final Company company = TestDataUtilCompany.createTestCompanyA();
+		final CompanyDTO company = TestDataUtilCompany.createTestCompanyA();
 		final String companyJson = objMapper.writeValueAsString(company);
 		
 		mockMvc.perform(MockMvcRequestBuilders.post("/companies")
@@ -54,7 +56,7 @@ public class CompanyControllerTest {
 	
 	@Test 
 	public void testThatCreateCompanyReturnsCreatedCompany() throws Exception {
-		Company company = TestDataUtilCompany.createTestCompanyA();
+		CompanyDTO company = TestDataUtilCompany.createTestCompanyA();
 		
 		company.setId(null);
 		
@@ -80,8 +82,8 @@ public class CompanyControllerTest {
 	
 	@Test
 	public void testThatListCompaniesReturnsTheCompanies() throws Exception {
-		Company compA = TestDataUtilCompany.createTestCompanyA();
-		Company compB = TestDataUtilCompany.createTestCompanyB();
+		CompanyDTO compA = TestDataUtilCompany.createTestCompanyA();
+		CompanyDTO compB = TestDataUtilCompany.createTestCompanyB();
 		
 		compA.setId(null);
 		compB.setId(null);
@@ -99,7 +101,7 @@ public class CompanyControllerTest {
 	
 	@Test
 	public void testThatGetCompanyByIdReturnsHTTP200WhenCompanyExist() throws Exception {
-		Company compA = TestDataUtilCompany.createTestCompanyA();
+		CompanyDTO compA = TestDataUtilCompany.createTestCompanyA();
 		compA.setId(null);
 		companyService.create(compA);
 		
@@ -111,7 +113,7 @@ public class CompanyControllerTest {
 	
 	@Test
 	public void testThatGetCompanyByIdReturnsCompanyWhenCompanyExist() throws Exception {
-		Company compA = TestDataUtilCompany.createTestCompanyA();
+		CompanyDTO compA = TestDataUtilCompany.createTestCompanyA();
 		compA.setId(null);
 		companyService.create(compA);
 		
@@ -127,7 +129,7 @@ public class CompanyControllerTest {
 	
 	@Test
 	public void testThatGetCompanyByIdReturnsHTTP404WhenCompanyDoesNotExist() throws Exception {
-		Company compA = TestDataUtilCompany.createTestCompanyA();
+		CompanyDTO compA = TestDataUtilCompany.createTestCompanyA();
 		compA.setId(null);
 		companyService.create(compA);
 		
@@ -140,7 +142,7 @@ public class CompanyControllerTest {
 
 	@Test
 	public void testThatGetCompanyByCnpjReturnsHTTP200WhenCompanyExist() throws Exception {
-		Company compA = TestDataUtilCompany.createTestCompanyA();
+		CompanyDTO compA = TestDataUtilCompany.createTestCompanyA();
 		compA.setId(null);
 		companyService.create(compA);
 
@@ -154,7 +156,7 @@ public class CompanyControllerTest {
 
 	@Test
 	public void testThatGetCompanyByCnpjReturnsCompanyWhenCompanyExist() throws Exception {
-		Company compA = TestDataUtilCompany.createTestCompanyA();
+		CompanyDTO compA = TestDataUtilCompany.createTestCompanyA();
 		compA.setId(null);
 		companyService.create(compA);
 
@@ -172,7 +174,7 @@ public class CompanyControllerTest {
 
 	@Test
 	public void testThatGetCompanyByCnpjReturnsHTTP404WhenCompanyDoesNotExist() throws Exception {
-		Company compA = TestDataUtilCompany.createTestCompanyA();
+		CompanyDTO compA = TestDataUtilCompany.createTestCompanyA();
 		compA.setId(null);
 		companyService.create(compA);
 
@@ -187,7 +189,7 @@ public class CompanyControllerTest {
 
 	@Test
 	public void testThatGetCompanyByPhoneReturnsHTTP200WhenCompanyExist() throws Exception {
-		Company compA = TestDataUtilCompany.createTestCompanyA();
+		CompanyDTO compA = TestDataUtilCompany.createTestCompanyA();
 		compA.setId(null);
 		companyService.create(compA);
 
@@ -201,7 +203,7 @@ public class CompanyControllerTest {
 
 	@Test
 	public void testThatGetCompanyByPhoneReturnsCompanyWhenCompanyExist() throws Exception {
-		Company compA = TestDataUtilCompany.createTestCompanyA();
+		CompanyDTO compA = TestDataUtilCompany.createTestCompanyA();
 		compA.setId(null);
 		companyService.create(compA);
 
@@ -219,7 +221,7 @@ public class CompanyControllerTest {
 
 	@Test
 	public void testThatGetCompanyByPhoneReturnsHTTP404WhenCompanyDoesNotExist() throws Exception {
-		Company compA = TestDataUtilCompany.createTestCompanyA();
+		CompanyDTO compA = TestDataUtilCompany.createTestCompanyA();
 		compA.setId(null);
 		companyService.create(compA);
 
@@ -233,7 +235,7 @@ public class CompanyControllerTest {
 
 	@Test
 	public void testThatGetCompanyByNameReturnsHTTP200WhenCompanyExist() throws Exception {
-		Company compA = TestDataUtilCompany.createTestCompanyA();
+		CompanyDTO compA = TestDataUtilCompany.createTestCompanyA();
 		compA.setId(null);
 		companyService.create(compA);
 
@@ -247,7 +249,7 @@ public class CompanyControllerTest {
 
 	@Test
 	public void testThatGetCompanyByNameReturnsCompanyWhenCompanyExist() throws Exception {
-		Company compA = TestDataUtilCompany.createTestCompanyA();
+		CompanyDTO compA = TestDataUtilCompany.createTestCompanyA();
 		compA.setId(null);
 		companyService.create(compA);
 
@@ -265,7 +267,7 @@ public class CompanyControllerTest {
 
 	@Test
 	public void testThatGetCompanyByNameReturnsHTTP404WhenCompanyDoesNotExist() throws Exception {
-		Company compA = TestDataUtilCompany.createTestCompanyA();
+		CompanyDTO compA = TestDataUtilCompany.createTestCompanyA();
 		compA.setId(null);
 		companyService.create(compA);
 
@@ -280,7 +282,7 @@ public class CompanyControllerTest {
 	
 	@Test
 	public void testThatUpdateCompanyReturnsHTTP404WhenCompanyDoesNotExist() throws Exception {
-		final Company compA = TestDataUtilCompany.createTestCompanyA();
+		final CompanyDTO compA = TestDataUtilCompany.createTestCompanyA();
 		final String compAJson = objMapper.writeValueAsString(compA);
 		
 		mockMvc.perform(MockMvcRequestBuilders.put("/companies/55")
@@ -293,7 +295,7 @@ public class CompanyControllerTest {
 	
 	@Test
 	public void testThatUpdateCompanyReturnsHTTP200WhenCompanyIsUpdated() throws Exception {
-		Company compA = TestDataUtilCompany.createTestCompanyA();
+		CompanyDTO compA = TestDataUtilCompany.createTestCompanyA();
 		companyService.create(compA);
 		
 		compA.setName("updatedName");

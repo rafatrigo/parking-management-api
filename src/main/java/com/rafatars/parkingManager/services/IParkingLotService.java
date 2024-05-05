@@ -4,9 +4,9 @@ package com.rafatars.parkingManager.services;
 import java.util.List;
 import java.util.Optional;
 
-import com.rafatars.parkingManager.entities.mirrors.ParkingLot;
+import com.rafatars.parkingManager.entities.dtos.ParkingLotDTO;
 
-public interface IParkingLotService extends IServices<ParkingLot>{
-        List<ParkingLot> findAllByCompany(Long companyId);
-        Optional<ParkingLot> findByName(String name);
+public interface IParkingLotService extends IServices<ParkingLotDTO>{
+        List<ParkingLotDTO> findAllByCompany(Long companyId);
+        Optional<ParkingLotDTO> findByName(String name);
 }

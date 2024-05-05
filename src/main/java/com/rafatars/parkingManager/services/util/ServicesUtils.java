@@ -3,14 +3,14 @@ package com.rafatars.parkingManager.services.util;
 import com.rafatars.parkingManager.entities.CompanyEntity;
 import com.rafatars.parkingManager.entities.ParkingLotEntity;
 import com.rafatars.parkingManager.entities.VehicleEntity;
-import com.rafatars.parkingManager.entities.mirrors.Company;
-import com.rafatars.parkingManager.entities.mirrors.ParkingLot;
-import com.rafatars.parkingManager.entities.mirrors.Vehicle;
+import com.rafatars.parkingManager.entities.dtos.CompanyDTO;
+import com.rafatars.parkingManager.entities.dtos.ParkingLotDTO;
+import com.rafatars.parkingManager.entities.dtos.VehicleDTO;
 
 public class ServicesUtils {
     
-    public static Company companyEntityToCompany(CompanyEntity companyEntity) {
-        return Company.builder()
+    public static CompanyDTO companyEntityToCompany(CompanyEntity companyEntity) {
+        return CompanyDTO.builder()
 				.id(companyEntity.getId())
 				.name(companyEntity.getName())
 				.cnpj(companyEntity.getCnpj())
@@ -21,7 +21,7 @@ public class ServicesUtils {
 				.build();
     }
 
-    public static CompanyEntity companyToCompanyEntity(Company company) {
+    public static CompanyEntity companyToCompanyEntity(CompanyDTO company) {
         return CompanyEntity.builder()
 				.id(company.getId())
 				.name(company.getName())
@@ -33,7 +33,7 @@ public class ServicesUtils {
 				.build();
     }
 
-    public static VehicleEntity vehicleToVehicleEntity(Vehicle vehicle) {
+    public static VehicleEntity vehicleToVehicleEntity(VehicleDTO vehicle) {
 		return VehicleEntity.builder()
 				.id(vehicle.getId())
 				.brand(vehicle.getBrand())
@@ -46,8 +46,8 @@ public class ServicesUtils {
 		
 	}
 	
-	public static Vehicle vehicleEntityToVehicle(VehicleEntity vehicle) {
-		return Vehicle.builder()
+	public static VehicleDTO vehicleEntityToVehicle(VehicleEntity vehicle) {
+		return VehicleDTO.builder()
 				.id(vehicle.getId())
 				.brand(vehicle.getBrand())
 				.color(vehicle.getColor())
@@ -57,8 +57,8 @@ public class ServicesUtils {
 				.build();
 	}
 
-	public static ParkingLot parkingLotEntityToParkingLot(ParkingLotEntity parkingLot) {
-		return ParkingLot.builder()
+	public static ParkingLotDTO parkingLotEntityToParkingLot(ParkingLotEntity parkingLot) {
+		return ParkingLotDTO.builder()
 				.id(parkingLot.getId())
 				.name(parkingLot.getName())
 				.address(parkingLot.getAddress())
@@ -69,7 +69,7 @@ public class ServicesUtils {
 				.build();
 	}
 
-	public static ParkingLotEntity parkingLotToParkingLotEntity(ParkingLot parkingLot) {
+	public static ParkingLotEntity parkingLotToParkingLotEntity(ParkingLotDTO parkingLot) {
 		return ParkingLotEntity.builder()
 				.id(parkingLot.getId())
 				.name(parkingLot.getName())

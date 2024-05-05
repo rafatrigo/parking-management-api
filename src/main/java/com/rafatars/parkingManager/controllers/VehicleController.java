@@ -16,7 +16,7 @@ import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
 import com.rafatars.parkingManager.entities.VehicleType;
-import com.rafatars.parkingManager.entities.mirrors.Vehicle;
+import com.rafatars.parkingManager.entities.dtos.VehicleDTO;
 import com.rafatars.parkingManager.services.IVehicleService;
 
 @RestController
@@ -31,17 +31,17 @@ public class VehicleController {
 	
 	
 	@GetMapping(path = "/vehicles")
-	public List<Vehicle> getVehicles(){
+	public List<VehicleDTO> getVehicles(){
 		
-		final List<Vehicle> vehicles = vehicleService.FindAll();
+		final List<VehicleDTO> vehicles = vehicleService.FindAll();
  		
 		return vehicles;
 	}
 	
 	@GetMapping(path = "/vehicles/{id}")
-	public ResponseEntity<Vehicle> getVehicleById(@PathVariable("id") Long id) {
+	public ResponseEntity<VehicleDTO> getVehicleById(@PathVariable("id") Long id) {
 		
-		final Optional<Vehicle> foundVehicle = vehicleService.findById(id);
+		final Optional<VehicleDTO> foundVehicle = vehicleService.findById(id);
 		
 		if(foundVehicle.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -52,9 +52,9 @@ public class VehicleController {
 	}
 
 	@GetMapping(path = "/vehicles", params = "plate")
-	public ResponseEntity<Vehicle> getVehicleByPlate(@Param("plate") String plate) {
+	public ResponseEntity<VehicleDTO> getVehicleByPlate(@Param("plate") String plate) {
 		
-		final Optional<Vehicle> foundVehicle = vehicleService.findByPlate(plate);
+		final Optional<VehicleDTO> foundVehicle = vehicleService.findByPlate(plate);
 		
 		if(foundVehicle.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -65,9 +65,9 @@ public class VehicleController {
 	}
 
 	@GetMapping(path = "/vehicles", params = "model")
-	public ResponseEntity<List<Vehicle>> getVehicleByModel(@Param("model") String model) {
+	public ResponseEntity<List<VehicleDTO>> getVehicleByModel(@Param("model") String model) {
 		
-		final List<Vehicle> foundVehicles = vehicleService.findAllByModel(model);
+		final List<VehicleDTO> foundVehicles = vehicleService.findAllByModel(model);
 		
 		if(foundVehicles.isEmpty()){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -78,9 +78,9 @@ public class VehicleController {
 	}
 
 	@GetMapping(path = "/vehicles", params = "brand")
-	public ResponseEntity<List<Vehicle>> getVehicleByBrand(@Param("brand") String brand) {
+	public ResponseEntity<List<VehicleDTO>> getVehicleByBrand(@Param("brand") String brand) {
 		
-		final List<Vehicle> foundVehicles = vehicleService.findAllByBrand(brand);
+		final List<VehicleDTO> foundVehicles = vehicleService.findAllByBrand(brand);
 		
 		if(foundVehicles.isEmpty()){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -91,9 +91,9 @@ public class VehicleController {
 	}
 
 	@GetMapping(path = "/vehicles", params = "color")
-	public ResponseEntity<List<Vehicle>> getVehicleByColor(@Param("color") String color) {
+	public ResponseEntity<List<VehicleDTO>> getVehicleByColor(@Param("color") String color) {
 		
-		final List<Vehicle> foundVehicles = vehicleService.findAllByColor(color);
+		final List<VehicleDTO> foundVehicles = vehicleService.findAllByColor(color);
 		
 		if(foundVehicles.isEmpty()){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -104,9 +104,9 @@ public class VehicleController {
 	}
 
 	@GetMapping(path = "/vehicles", params = "type")
-	public ResponseEntity<List<Vehicle>> getVehicleByType(@Param("type") VehicleType type) {
+	public ResponseEntity<List<VehicleDTO>> getVehicleByType(@Param("type") VehicleType type) {
 		
-		final List<Vehicle> foundVehicles = vehicleService.findAllByType(type);
+		final List<VehicleDTO> foundVehicles = vehicleService.findAllByType(type);
 		
 		if(foundVehicles.isEmpty()){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -117,25 +117,25 @@ public class VehicleController {
 	}
 	
 	@PostMapping(path = "/vehicles")
-	public ResponseEntity<Vehicle> createVehicle(@RequestBody Vehicle vehicle) {
+	public ResponseEntity<VehicleDTO> createVehicle(@RequestBody VehicleDTO vehicle) {
 		
-		final Vehicle newVehicle = vehicleService.create(vehicle);
+		final VehicleDTO newVehicle = vehicleService.create(vehicle);
 		
 		return new ResponseEntity<>(newVehicle, HttpStatus.CREATED);
 		
 	}
 	
 	@PutMapping(path = "/vehicles/{id}")
-	public ResponseEntity<Vehicle> updateVehicle(
+	public ResponseEntity<VehicleDTO> updateVehicle(
 			@PathVariable("id") Long id,
-			@RequestBody Vehicle vehicle
+			@RequestBody VehicleDTO vehicle
 			){
-		final Optional<Vehicle> edtVehicle = vehicleService.findById(id);
+		final Optional<VehicleDTO> edtVehicle = vehicleService.findById(id);
 		
 		if(edtVehicle.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
-			final Vehicle updatedVehicle = vehicleService.update(id, vehicle);
+			final VehicleDTO updatedVehicle = vehicleService.update(id, vehicle);
 			
 			return new ResponseEntity<>(updatedVehicle, HttpStatus.OK);
 		}
@@ -143,9 +143,9 @@ public class VehicleController {
 	}
 	
 	@DeleteMapping(path = "/vehicles/{id}")
-	public ResponseEntity<Vehicle> deleteVehicle(@PathVariable("id") Long id) {
+	public ResponseEntity<VehicleDTO> deleteVehicle(@PathVariable("id") Long id) {
 		
-		final Optional<Vehicle> vehicle = vehicleService.findById(id);
+		final Optional<VehicleDTO> vehicle = vehicleService.findById(id);
 		
 		if(vehicle.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

@@ -18,7 +18,7 @@ import org.mockito.junit.jupiter.MockitoExtension;
 import com.rafatars.parkingManager.TestDataUtils.TestDataUtilVehicle;
 import com.rafatars.parkingManager.entities.VehicleEntity;
 import com.rafatars.parkingManager.entities.VehicleType;
-import com.rafatars.parkingManager.entities.mirrors.Vehicle;
+import com.rafatars.parkingManager.entities.dtos.VehicleDTO;
 import com.rafatars.parkingManager.respositories.IVehicleRepository;
 import com.rafatars.parkingManager.services.impl.VehicleService;
 import com.rafatars.parkingManager.services.util.ServicesUtils;
@@ -36,11 +36,11 @@ public class VehicleServiceTest {
     public void testThatVehicleCanBeCreated() {
 
         final VehicleEntity vehicleEntity = TestDataUtilVehicle.createTestVehicleEntityA();
-        final Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(vehicleEntity);
+        final VehicleDTO vehicle = ServicesUtils.vehicleEntityToVehicle(vehicleEntity);
         
         when(vehicleRepository.save(vehicleEntity)).thenReturn(vehicleEntity);
 
-        final Vehicle createdVehicle = underTest.create(vehicle);
+        final VehicleDTO createdVehicle = underTest.create(vehicle);
 
         assertEquals(vehicle, createdVehicle);
         
@@ -59,9 +59,9 @@ public class VehicleServiceTest {
     @Test
     public void testThatVehicleCanBeUpdated() {
 
-       final Vehicle oldVehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+       final VehicleDTO oldVehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
 		
-		Vehicle newVehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityB());
+		VehicleDTO newVehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityB());
 		
 		VehicleEntity saveMockReturn = ServicesUtils.vehicleToVehicleEntity(newVehicle);
 		
@@ -72,7 +72,7 @@ public class VehicleServiceTest {
 		
 		when(vehicleRepository.save(saveMockReturn)).thenReturn(saveMockReturn);
 		
-		final Vehicle updatedVehicle = underTest.update(oldVehicle.getId(), newVehicle);
+		final VehicleDTO updatedVehicle = underTest.update(oldVehicle.getId(), newVehicle);
 		
 		newVehicle.setId(oldVehicle.getId());
 		
@@ -83,12 +83,12 @@ public class VehicleServiceTest {
     @Test
     public void testThatCanFindVehicleById() {
 
-        final Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+        final VehicleDTO vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
 
         when(vehicleRepository.findById(vehicle.getId()))
             .thenReturn(Optional.of(ServicesUtils.vehicleToVehicleEntity(vehicle)));
 
-        final Optional<Vehicle> foundVehicle = underTest.findById(vehicle.getId());
+        final Optional<VehicleDTO> foundVehicle = underTest.findById(vehicle.getId());
 
         assertThat(foundVehicle.get()).isEqualTo(vehicle);
         
@@ -102,7 +102,7 @@ public class VehicleServiceTest {
         when(vehicleRepository.findById(id))
             .thenReturn(Optional.empty());
 
-        final Optional<Vehicle> result = underTest.findById(id);
+        final Optional<VehicleDTO> result = underTest.findById(id);
 
         assertThat(result).isEmpty();
     }
@@ -131,12 +131,12 @@ public class VehicleServiceTest {
     @Test
     public void testThatCanFindVehicleByPlate() {
 
-        final Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+        final VehicleDTO vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
 
         when(vehicleRepository.findByPlate(vehicle.getPlate()))
             .thenReturn(Optional.of(ServicesUtils.vehicleToVehicleEntity(vehicle)));
 
-        final Optional<Vehicle> foundVehicle = underTest.findByPlate(vehicle.getPlate());
+        final Optional<VehicleDTO> foundVehicle = underTest.findByPlate(vehicle.getPlate());
 
         assertThat(foundVehicle.get()).isEqualTo(vehicle);
         
@@ -150,7 +150,7 @@ public class VehicleServiceTest {
         when(vehicleRepository.findByPlate(plate))
             .thenReturn(Optional.empty());
 
-        final Optional<Vehicle> result = underTest.findByPlate(plate);
+        final Optional<VehicleDTO> result = underTest.findByPlate(plate);
 
         assertThat(result).isEmpty();
         

@@ -2,6 +2,7 @@ package com.rafatars.parkingManager.controller;
 
 import org.junit.jupiter.api.Test;
 import org.junit.jupiter.api.extension.ExtendWith;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.test.autoconfigure.web.servlet.AutoConfigureMockMvc;
 import org.springframework.boot.test.context.SpringBootTest;
@@ -14,8 +15,9 @@ import org.springframework.test.web.servlet.request.MockMvcRequestBuilders;
 import org.springframework.test.web.servlet.result.MockMvcResultMatchers;
 
 import com.fasterxml.jackson.databind.ObjectMapper;
+
 import com.rafatars.parkingManager.TestDataUtils.TestDataUtilVehicle;
-import com.rafatars.parkingManager.entities.mirrors.Vehicle;
+import com.rafatars.parkingManager.entities.dtos.VehicleDTO;
 import com.rafatars.parkingManager.services.impl.VehicleService;
 import com.rafatars.parkingManager.services.util.ServicesUtils;
 
@@ -40,7 +42,7 @@ public class VehicleControllerTest {
 	
 	@Test
 	public void testThatCreateVehicleReturnsHTTP201() throws Exception {
-		final Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+		final VehicleDTO vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
 		final String vehicleJson = objMapper.writeValueAsString(vehicle);
 		
 		mockMvc.perform(MockMvcRequestBuilders.post("/vehicles")
@@ -50,7 +52,7 @@ public class VehicleControllerTest {
 	
 	@Test
 	public void testThatCreateVehicleReturnsCreatedVehicle() throws Exception {
-		Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+		VehicleDTO vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
 		vehicle.setId(null);
 		
 		final String vehicleJson = objMapper.writeValueAsString(vehicle);
@@ -68,7 +70,7 @@ public class VehicleControllerTest {
 
     @Test
     public void testThatDeleteVehicleReturnsHTTP204WhenVehicleIsDeleted() throws Exception {
-        Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+        VehicleDTO vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
         
         vehicle.setId(null);
         
@@ -95,8 +97,8 @@ public class VehicleControllerTest {
 	
 	@Test
 	public void testThatListVehiclesReturnsVehicles() throws Exception {
-		Vehicle vehicleA = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
-		Vehicle vehicleB = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityB());
+		VehicleDTO vehicleA = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+		VehicleDTO vehicleB = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityB());
 		
 		vehicleA.setId(null);
 		vehicleB.setId(null);
@@ -123,7 +125,7 @@ public class VehicleControllerTest {
 	
 	@Test
 	public void testThatGetVehicleByIdReturnsHTTP200WhenVehicleExist() throws Exception {
-		Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+		VehicleDTO vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
 		
 		vehicle.setId(null);
 		
@@ -143,7 +145,7 @@ public class VehicleControllerTest {
 	
 	@Test
 	public void testThatGetVehicleByIdReturnsTheVehicleWhenTheVehicleExist() throws Exception {
-		Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+		VehicleDTO vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
 				
 		vehicle.setId(null);
 		
@@ -161,7 +163,7 @@ public class VehicleControllerTest {
 	
 	@Test
 	public void testThatUpdateVehicleReturnsHTTP404WhenVehicleDoesNotExist() throws Exception {
-		final Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityB());
+		final VehicleDTO vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityB());
         
         final String vehicleJson = objMapper.writeValueAsString(vehicle);
         
@@ -176,7 +178,7 @@ public class VehicleControllerTest {
 	
 	@Test
 	public void testThatUpdateVehicleReturnsHTTP200WhenVehicleIsUpdated() throws Exception {
-		Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+		VehicleDTO vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
 		
 		vehicleService.create(vehicle);
 		
@@ -191,7 +193,7 @@ public class VehicleControllerTest {
 	
     @Test
     public void testThatGetVehicleByPlateReturnsHTTP200WhenVehicleExist() throws Exception {
-        Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+        VehicleDTO vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
         
         vehicle.setId(null);
         
@@ -205,7 +207,7 @@ public class VehicleControllerTest {
 
     @Test
     public void testThatGetVehicleByPlateReturnsTheVehicleWhenTheVehicleExist() throws Exception {
-        Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+        VehicleDTO vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
         
         vehicle.setId(null);
         
@@ -230,7 +232,7 @@ public class VehicleControllerTest {
 
     @Test
     public void testThatGetVehicleByTypeReturnsHTTP200WhenVehicleExist() throws Exception {
-        Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+        VehicleDTO vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
         
         vehicle.setId(null);
         
@@ -244,8 +246,8 @@ public class VehicleControllerTest {
 
     @Test
     public void testThatGetVehiclesByTypeReturnsTheVehiclesWhenTheyExist() throws Exception {
-        Vehicle vehicle1 = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
-        Vehicle vehicle2 = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityB());
+        VehicleDTO vehicle1 = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+        VehicleDTO vehicle2 = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityB());
         
         vehicle1.setId(null);
         vehicle2.setId(null);
@@ -278,7 +280,7 @@ public class VehicleControllerTest {
 
     @Test
     public void testThatGetVehiclesByColorReturnsHTTP200WhenVehiclesExist() throws Exception {
-        Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+        VehicleDTO vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
         
         vehicle.setId(null);
         
@@ -292,8 +294,8 @@ public class VehicleControllerTest {
 
     @Test
     public void testThatGetVehiclesByColorReturnsTheVehiclesWhenTheyExist() throws Exception {
-        Vehicle vehicle1 = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
-        Vehicle vehicle2 = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityB());
+        VehicleDTO vehicle1 = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+        VehicleDTO vehicle2 = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityB());
         
         vehicle1.setId(null);
         vehicle2.setId(null);
@@ -320,7 +322,7 @@ public class VehicleControllerTest {
 
     @Test
     public void testThatGetVehiclesByBrandReturnsHTTP200WhenVehiclesExist() throws Exception {
-        Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+        VehicleDTO vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
         
         vehicle.setId(null);
         
@@ -334,8 +336,8 @@ public class VehicleControllerTest {
 
     @Test
     public void testThatGetVehiclesByBrandReturnsTheVehiclesWhenTheyExist() throws Exception {
-        Vehicle vehicle1 = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
-        Vehicle vehicle2 = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityB());
+        VehicleDTO vehicle1 = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+        VehicleDTO vehicle2 = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityB());
         
         vehicle1.setId(null);
         vehicle2.setId(null);
@@ -368,7 +370,7 @@ public class VehicleControllerTest {
 
     @Test
     public void testThatGetVehiclesByModelReturnsHTTP200WhenVehiclesExist() throws Exception {
-        Vehicle vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+        VehicleDTO vehicle = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
         
         vehicle.setId(null);
         
@@ -382,8 +384,8 @@ public class VehicleControllerTest {
 
     @Test
     public void testThatGetVehiclesByModelReturnsTheVehiclesWhenTheyExist() throws Exception {
-        Vehicle vehicle1 = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
-        Vehicle vehicle2 = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityB());
+        VehicleDTO vehicle1 = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityA());
+        VehicleDTO vehicle2 = ServicesUtils.vehicleEntityToVehicle(TestDataUtilVehicle.createTestVehicleEntityB());
         
         vehicle1.setId(null);
         vehicle2.setId(null);

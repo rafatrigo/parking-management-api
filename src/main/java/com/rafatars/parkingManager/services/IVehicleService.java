@@ -4,12 +4,12 @@ import java.util.List;
 import java.util.Optional;
 
 import com.rafatars.parkingManager.entities.VehicleType;
-import com.rafatars.parkingManager.entities.mirrors.Vehicle;
+import com.rafatars.parkingManager.entities.dtos.VehicleDTO;
 
-public interface IVehicleService extends IServices<Vehicle> {
-    Optional<Vehicle> findByPlate(String plate);
-    List<Vehicle> findAllByModel(String model);
-    List<Vehicle> findAllByBrand(String brand);
-    List<Vehicle> findAllByColor(String color);
-    List<Vehicle> findAllByType(VehicleType type);
+public interface IVehicleService extends IServices<VehicleDTO> {
+    Optional<VehicleDTO> findByPlate(String plate);
+    List<VehicleDTO> findAllByModel(String model);
+    List<VehicleDTO> findAllByBrand(String brand);
+    List<VehicleDTO> findAllByColor(String color);
+    List<VehicleDTO> findAllByType(VehicleType type);
 }

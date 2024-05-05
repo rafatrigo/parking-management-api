@@ -10,10 +10,9 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.rafatars.parkingManager.entities.CompanyEntity;
-import com.rafatars.parkingManager.entities.mirrors.Company;
+import com.rafatars.parkingManager.entities.dtos.CompanyDTO;
 import com.rafatars.parkingManager.respositories.ICompanyRepository;
 import com.rafatars.parkingManager.services.ICompanyService;
-
 import com.rafatars.parkingManager.services.util.ServicesUtils;
 
 
@@ -28,7 +27,7 @@ public class CompanyService implements ICompanyService {
 	}
 
 	@Override
-	public Company create(final Company obj) {
+	public CompanyDTO create(final CompanyDTO obj) {
 		
 		final CompanyEntity compEntity = ServicesUtils.companyToCompanyEntity(obj);
 		
@@ -38,7 +37,7 @@ public class CompanyService implements ICompanyService {
 	}
 
 	@Override
-	public Company update(Long id, final Company obj) {
+	public CompanyDTO update(Long id, final CompanyDTO obj) {
 		
 		CompanyEntity updatingCompany = companyRepository.findById(id).get();
 		
@@ -67,7 +66,7 @@ public class CompanyService implements ICompanyService {
 	}
 
 	@Override
-	public Optional<Company> findById(Long id) {
+	public Optional<CompanyDTO> findById(Long id) {
 		
 		final Optional<CompanyEntity> foundCompanyEntity = companyRepository.findById(id);
 		
@@ -75,7 +74,7 @@ public class CompanyService implements ICompanyService {
 	}
 
 	@Override
-	public List<Company> FindAll() {
+	public List<CompanyDTO> FindAll() {
 		
 		final Iterable<CompanyEntity> foundCompanyEntities = companyRepository.findAll();
 		
@@ -90,7 +89,7 @@ public class CompanyService implements ICompanyService {
 	}
 
 	@Override
-	public Optional<Company> findByCnpj(String cnpj) {
+	public Optional<CompanyDTO> findByCnpj(String cnpj) {
 		
 		final Optional<CompanyEntity> foundCompanyEntity = companyRepository.findByCnpj(cnpj);
 		
@@ -98,7 +97,7 @@ public class CompanyService implements ICompanyService {
 	}
 
 	@Override
-	public Optional<Company> findByName(String name) {
+	public Optional<CompanyDTO> findByName(String name) {
 		
 		final Optional<CompanyEntity> foundCompanyEntity = companyRepository.findByName(name);
 		
@@ -106,7 +105,7 @@ public class CompanyService implements ICompanyService {
 	}
 
 	@Override
-	public Optional<Company> findByPhone(String phone) {
+	public Optional<CompanyDTO> findByPhone(String phone) {
 		
 		final Optional<CompanyEntity> foundCompanyEntity = companyRepository.findByPhone(phone);
 		

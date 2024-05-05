@@ -15,7 +15,7 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
-import com.rafatars.parkingManager.entities.mirrors.Company;
+import com.rafatars.parkingManager.entities.dtos.CompanyDTO;
 import com.rafatars.parkingManager.services.ICompanyService;
 
 @RestController
@@ -34,9 +34,9 @@ public class CompanyController {
 	 * @return A list of companies or a empty list
 	 */
 	@GetMapping(path = "/companies")
-	public List<Company> getCompanies() {
+	public List<CompanyDTO> getCompanies() {
 		
-		List<Company> companies = companyService.FindAll();
+		List<CompanyDTO> companies = companyService.FindAll();
 		
 		return companies;
 	}
@@ -48,11 +48,11 @@ public class CompanyController {
 	 * @return
 	 */
 	@GetMapping(path = "/companies/{id}")
-	public ResponseEntity<Company> getCompanyById(
+	public ResponseEntity<CompanyDTO> getCompanyById(
 			@PathVariable("id") Long id
 			){
 		
-		Optional<Company> foundCompany = companyService.findById(id);
+		Optional<CompanyDTO> foundCompany = companyService.findById(id);
 		
 		if(foundCompany.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -63,11 +63,11 @@ public class CompanyController {
 	}
 
 	@GetMapping(path = "/companies", params = "name")
-	public ResponseEntity<Company> getCompanyByName(
+	public ResponseEntity<CompanyDTO> getCompanyByName(
 			@Param("name") String name
 			){
 		
-		Optional<Company> foundCompany = companyService.findByName(name);
+		Optional<CompanyDTO> foundCompany = companyService.findByName(name);
 		
 		if(foundCompany.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -78,11 +78,11 @@ public class CompanyController {
 	}
 
 	@GetMapping(path = "/companies", params = "cnpj")
-	public ResponseEntity<Company> getCompanyByCnpj(
+	public ResponseEntity<CompanyDTO> getCompanyByCnpj(
 			@Param("cnpj") String cnpj
 			){
 		
-		Optional<Company> foundCompany = companyService.findByCnpj(cnpj);
+		Optional<CompanyDTO> foundCompany = companyService.findByCnpj(cnpj);
 		
 		if(foundCompany.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -93,11 +93,11 @@ public class CompanyController {
 	}
 
 	@GetMapping(path = "/companies", params = "phone")
-	public ResponseEntity<Company> getCompanyByPhone(
+	public ResponseEntity<CompanyDTO> getCompanyByPhone(
 			@Param("phone") String phone
 			){
 		
-		Optional<Company> foundCompany = companyService.findByPhone(phone);
+		Optional<CompanyDTO> foundCompany = companyService.findByPhone(phone);
 		
 		if(foundCompany.isEmpty()){
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
@@ -114,11 +114,11 @@ public class CompanyController {
 	 * @return
 	 */
 	@PostMapping(path = "/companies")
-	public ResponseEntity<Company> createCompany(
-			@RequestBody final Company company
+	public ResponseEntity<CompanyDTO> createCompany(
+			@RequestBody final CompanyDTO company
 			){
 		
-		Company createdCompany = companyService.create(company);
+		CompanyDTO createdCompany = companyService.create(company);
 	
 		return new ResponseEntity<>(createdCompany, HttpStatus.CREATED);
 	}
@@ -131,17 +131,17 @@ public class CompanyController {
 	 * @return
 	 */
 	@PutMapping(path = "/companies/{id}")
-	public ResponseEntity<Company> updateCompany(
+	public ResponseEntity<CompanyDTO> updateCompany(
 			@PathVariable("id") Long id, 
-			@RequestBody final Company company)
+			@RequestBody final CompanyDTO company)
 	{
 		
-		Optional<Company> edtCompany = companyService.findById(id);
+		Optional<CompanyDTO> edtCompany = companyService.findById(id);
 		
 		if(edtCompany.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);
 		}else {
-			Company updatedCompany = companyService.update(id, company);
+			CompanyDTO updatedCompany = companyService.update(id, company);
 			
 			return new ResponseEntity<>(updatedCompany, HttpStatus.OK);
 		}
@@ -157,7 +157,7 @@ public class CompanyController {
 	@DeleteMapping(path = "/companies/{id}")
 	public <T> ResponseEntity<T> delteCompany(@PathVariable("id") Long id) {
 		
-		final Optional<Company> company = companyService.findById(id);
+		final Optional<CompanyDTO> company = companyService.findById(id);
 		
 		if(company.isEmpty()) {
 			return new ResponseEntity<>(HttpStatus.NOT_FOUND);

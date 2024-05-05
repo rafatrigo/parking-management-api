@@ -10,7 +10,7 @@ import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
 import com.rafatars.parkingManager.entities.ParkingLotEntity;
-import com.rafatars.parkingManager.entities.mirrors.ParkingLot;
+import com.rafatars.parkingManager.entities.dtos.ParkingLotDTO;
 import com.rafatars.parkingManager.respositories.IParkingLotRepository;
 import com.rafatars.parkingManager.services.IParkingLotService;
 import com.rafatars.parkingManager.services.util.ServicesUtils;
@@ -26,7 +26,7 @@ public class ParkingLotService implements IParkingLotService{
     }
 
     @Override
-    public ParkingLot create(ParkingLot parkingLot) {
+    public ParkingLotDTO create(ParkingLotDTO parkingLot) {
         
         final ParkingLotEntity parkingLotEntity = ServicesUtils.parkingLotToParkingLotEntity(parkingLot);
         
@@ -49,7 +49,7 @@ public class ParkingLotService implements IParkingLotService{
     }
 
     @Override
-    public ParkingLot update(Long id, ParkingLot parkingLot) {
+    public ParkingLotDTO update(Long id, ParkingLotDTO parkingLot) {
         
         Optional<ParkingLotEntity> updatingParkingLot = parkingLotRepository.findById(id);
         
@@ -71,7 +71,7 @@ public class ParkingLotService implements IParkingLotService{
     }
 
     @Override
-    public Optional<ParkingLot> findById(Long id) {
+    public Optional<ParkingLotDTO> findById(Long id) {
         
         final Optional<ParkingLotEntity> foundParkingLot = parkingLotRepository.findById(id);
 
@@ -80,7 +80,7 @@ public class ParkingLotService implements IParkingLotService{
     }
 
     @Override
-    public Optional<ParkingLot> findByName(String name) {
+    public Optional<ParkingLotDTO> findByName(String name) {
         
         final Optional<ParkingLotEntity> foundParkingLot = parkingLotRepository.findByName(name);
 
@@ -89,7 +89,7 @@ public class ParkingLotService implements IParkingLotService{
     }
 
     @Override
-    public List<ParkingLot> FindAll() {
+    public List<ParkingLotDTO> FindAll() {
         
         final Iterable<ParkingLotEntity> foundParkingLots = parkingLotRepository.findAll();
         
@@ -105,7 +105,7 @@ public class ParkingLotService implements IParkingLotService{
     }
 
     @Override
-    public List<ParkingLot> findAllByCompany(Long companyId) {
+    public List<ParkingLotDTO> findAllByCompany(Long companyId) {
         
         final List<ParkingLotEntity> foundParkingLots = parkingLotRepository.findAllByCompanyId(companyId);
 

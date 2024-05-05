@@ -11,7 +11,7 @@ import org.springframework.stereotype.Service;
 
 import com.rafatars.parkingManager.entities.VehicleEntity;
 import com.rafatars.parkingManager.entities.VehicleType;
-import com.rafatars.parkingManager.entities.mirrors.Vehicle;
+import com.rafatars.parkingManager.entities.dtos.VehicleDTO;
 import com.rafatars.parkingManager.respositories.IVehicleRepository;
 import com.rafatars.parkingManager.services.IVehicleService;
 
@@ -28,7 +28,7 @@ public class VehicleService implements IVehicleService {
 	}
 
 	@Override
-	public Vehicle create(Vehicle obj) {
+	public VehicleDTO create(VehicleDTO obj) {
 		
 		final VehicleEntity vehicleEntity = ServicesUtils.vehicleToVehicleEntity(obj);
 		
@@ -38,7 +38,7 @@ public class VehicleService implements IVehicleService {
 	}
 
 	@Override
-	public Vehicle update(Long id, Vehicle obj) {
+	public VehicleDTO update(Long id, VehicleDTO obj) {
 		
 		VehicleEntity vehicle = vehicleRepository.findById(id).get();
 		
@@ -66,7 +66,7 @@ public class VehicleService implements IVehicleService {
 	}
 
 	@Override
-	public Optional<Vehicle> findById(Long id) {
+	public Optional<VehicleDTO> findById(Long id) {
 		
 		Optional<VehicleEntity> vehicleEntity = vehicleRepository.findById(id);
 		
@@ -75,7 +75,7 @@ public class VehicleService implements IVehicleService {
 	}
 
 	@Override
-	public List<Vehicle> FindAll() {
+	public List<VehicleDTO> FindAll() {
 		
 		final Iterable<VehicleEntity> vehicleEntities = vehicleRepository.findAll();
 		
@@ -87,7 +87,7 @@ public class VehicleService implements IVehicleService {
 	}
 
 	@Override
-	public List<Vehicle> findAllByBrand(String brand) {
+	public List<VehicleDTO> findAllByBrand(String brand) {
 		
 		final List<VehicleEntity> foundVehicleEntity = vehicleRepository.findAllByBrand(brand);
 		
@@ -100,7 +100,7 @@ public class VehicleService implements IVehicleService {
 	}
 
 	@Override
-	public List<Vehicle> findAllByColor(String color) {
+	public List<VehicleDTO> findAllByColor(String color) {
 		
 		final List<VehicleEntity> foundVehicleEntity = vehicleRepository.findAllByColor(color);
 		
@@ -113,7 +113,7 @@ public class VehicleService implements IVehicleService {
 	}
 
 	@Override
-	public List<Vehicle> findAllByModel(String model) {
+	public List<VehicleDTO> findAllByModel(String model) {
 		
 		final List<VehicleEntity> foundVehicleEntity = vehicleRepository.findAllByModel(model);
 		
@@ -126,7 +126,7 @@ public class VehicleService implements IVehicleService {
 	}
 
 	@Override
-	public Optional<Vehicle> findByPlate(String plate) {
+	public Optional<VehicleDTO> findByPlate(String plate) {
 		
 		final Optional<VehicleEntity> foundVehicleEntity = vehicleRepository.findByPlate(plate);
 		
@@ -138,7 +138,7 @@ public class VehicleService implements IVehicleService {
 	}
 
 	@Override
-	public List<Vehicle> findAllByType(VehicleType type) {
+	public List<VehicleDTO> findAllByType(VehicleType type) {
 		
 		final List<VehicleEntity> foundVehicleEntity = vehicleRepository.findAllByType(type);
 		

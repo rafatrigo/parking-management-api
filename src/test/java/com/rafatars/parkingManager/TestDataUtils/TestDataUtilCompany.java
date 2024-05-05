@@ -5,7 +5,7 @@ import java.util.Set;
 
 import com.rafatars.parkingManager.entities.CompanyEntity;
 import com.rafatars.parkingManager.entities.ParkingLotEntity;
-import com.rafatars.parkingManager.entities.mirrors.Company;
+import com.rafatars.parkingManager.entities.dtos.CompanyDTO;
 
 public class TestDataUtilCompany {
     
@@ -51,11 +51,11 @@ public class TestDataUtilCompany {
 			.build();
 	}
 	
-	public static Company createTestCompanyA() {
+	public static CompanyDTO createTestCompanyA() {
 		
 		Set<ParkingLotEntity> parkingLots = new HashSet<>();
 		
-		return Company.builder()
+		return CompanyDTO.builder()
 				.id(1L)
 				.name("CompanyA")
 				.cnpj("001")
@@ -65,11 +65,11 @@ public class TestDataUtilCompany {
 				.build();
 	}
 	
-	public static Company createTestCompanyB() {
+	public static CompanyDTO createTestCompanyB() {
 		
 		Set<ParkingLotEntity> parkingLots = new HashSet<>();
 		
-		return Company.builder()
+		return CompanyDTO.builder()
 				.id(2L)
 				.name("CompanyB")
 				.cnpj("002")
@@ -79,11 +79,11 @@ public class TestDataUtilCompany {
 				.build();
 	}
 	
-	public static Company createTestCompanyC() {
+	public static CompanyDTO createTestCompanyC() {
 		
 		Set<ParkingLotEntity> parkingLots = new HashSet<>();
 		
-		return Company.builder()
+		return CompanyDTO.builder()
 			.id(3L)
 			.name("CompanyC")
 			.cnpj("003")
