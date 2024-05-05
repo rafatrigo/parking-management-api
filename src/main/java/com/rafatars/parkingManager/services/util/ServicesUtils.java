@@ -1,11 +1,11 @@
 package com.rafatars.parkingManager.services.util;
 
+import com.rafatars.parkingManager.dtos.CompanyDTO;
+import com.rafatars.parkingManager.dtos.ParkingLotDTO;
+import com.rafatars.parkingManager.dtos.VehicleDTO;
 import com.rafatars.parkingManager.entities.CompanyEntity;
 import com.rafatars.parkingManager.entities.ParkingLotEntity;
 import com.rafatars.parkingManager.entities.VehicleEntity;
-import com.rafatars.parkingManager.entities.dtos.CompanyDTO;
-import com.rafatars.parkingManager.entities.dtos.ParkingLotDTO;
-import com.rafatars.parkingManager.entities.dtos.VehicleDTO;
 
 public class ServicesUtils {
     

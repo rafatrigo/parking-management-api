@@ -9,9 +9,9 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.stereotype.Service;
 
+import com.rafatars.parkingManager.dtos.VehicleDTO;
 import com.rafatars.parkingManager.entities.VehicleEntity;
 import com.rafatars.parkingManager.entities.VehicleType;
-import com.rafatars.parkingManager.entities.dtos.VehicleDTO;
 import com.rafatars.parkingManager.respositories.IVehicleRepository;
 import com.rafatars.parkingManager.services.IVehicleService;
 

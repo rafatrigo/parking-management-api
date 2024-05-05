@@ -15,8 +15,8 @@ import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RestController;
 
+import com.rafatars.parkingManager.dtos.VehicleDTO;
 import com.rafatars.parkingManager.entities.VehicleType;
-import com.rafatars.parkingManager.entities.dtos.VehicleDTO;
 import com.rafatars.parkingManager.services.IVehicleService;
 
 @RestController

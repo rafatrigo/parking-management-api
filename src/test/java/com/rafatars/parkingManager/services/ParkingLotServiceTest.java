@@ -17,8 +17,8 @@ import org.mockito.Mock;
 import org.mockito.junit.jupiter.MockitoExtension;
 
 import com.rafatars.parkingManager.TestDataUtils.TestDataUtilParkingLot;
+import com.rafatars.parkingManager.dtos.ParkingLotDTO;
 import com.rafatars.parkingManager.entities.ParkingLotEntity;
-import com.rafatars.parkingManager.entities.dtos.ParkingLotDTO;
 import com.rafatars.parkingManager.respositories.IParkingLotRepository;
 import com.rafatars.parkingManager.services.impl.ParkingLotService;
 import com.rafatars.parkingManager.services.util.ServicesUtils;

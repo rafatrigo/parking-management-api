@@ -1,4 +1,4 @@
-package com.rafatars.parkingManager.entities.dtos;
+package com.rafatars.parkingManager.dtos;
 
 import java.util.Set;
 

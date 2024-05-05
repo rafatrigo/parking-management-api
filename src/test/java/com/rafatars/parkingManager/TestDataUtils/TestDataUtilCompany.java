@@ -3,9 +3,9 @@ package com.rafatars.parkingManager.TestDataUtils;
 import java.util.HashSet;
 import java.util.Set;
 
+import com.rafatars.parkingManager.dtos.CompanyDTO;
 import com.rafatars.parkingManager.entities.CompanyEntity;
 import com.rafatars.parkingManager.entities.ParkingLotEntity;
-import com.rafatars.parkingManager.entities.dtos.CompanyDTO;
 
 public class TestDataUtilCompany {
     

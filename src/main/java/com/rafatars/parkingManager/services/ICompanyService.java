@@ -2,7 +2,7 @@ package com.rafatars.parkingManager.services;
 
 import java.util.Optional;
 
-import com.rafatars.parkingManager.entities.dtos.CompanyDTO;
+import com.rafatars.parkingManager.dtos.CompanyDTO;
 
 public interface ICompanyService extends IServices<CompanyDTO> {
 	Optional<CompanyDTO> findByName(String name);
